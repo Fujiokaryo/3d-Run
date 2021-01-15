@@ -12,8 +12,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float speed;
 
+    [SerializeField]
+    private Image JumpIcon;
+
     private float PlayerHP = 1;
     private Rigidbody rb;
+    [SerializeField]
+    private bool JumppingFlag;
 
     void Start()
     {
@@ -35,6 +40,14 @@ public class PlayerController : MonoBehaviour
             Left(); //左移動
         }
 
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            if (JumppingFlag == true)
+            {
+                Jump();
+            }
+        }
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -43,6 +56,18 @@ public class PlayerController : MonoBehaviour
         {
             PlayerHP -= 0.25f;
             HPimg.DOFillAmount(PlayerHP, 0.5f);
+        }
+
+        if(other.gameObject.tag == "HPItem")
+        {
+            PlayerHP += 0.25f;
+            HPimg.DOFillAmount(PlayerHP, 0.5f);
+        }
+
+        if(other.gameObject.tag == "JumpItem")
+        {
+            JumppingFlag = true;
+            JumpIcon.enabled = true;
         }
     }
 
@@ -93,6 +118,13 @@ public class PlayerController : MonoBehaviour
             transform.Translate(-3.5f, 0, 0);
         }
         
+    }
+
+   void Jump()
+    {      
+        rb.AddForce(Vector3.up * 370);
+        JumppingFlag = false;
+        JumpIcon.enabled = false;
     }
  
 }
