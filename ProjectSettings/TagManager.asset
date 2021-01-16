@@ -4,8 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Fire
   - Wall
+  - HPItem
+  - JumpItem
   layers:
   - Default
   - TransparentFX

@@ -10,15 +10,15 @@ public class PlayerController : MonoBehaviour
     private Image HPimg;
 
     [SerializeField]
-    float speed;
+    public float speed;
 
     [SerializeField]
     private Image JumpIcon;
 
     private float PlayerHP = 1;
     private Rigidbody rb;
-    [SerializeField]
     private bool JumppingFlag;
+    private bool GameOver = false;
 
     void Start()
     {
@@ -28,6 +28,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(GameOver == true)
+        {
+            return;
+        }
+
         Accel();
 
         if (Input.GetKeyDown(KeyCode.D))
@@ -55,13 +60,17 @@ public class PlayerController : MonoBehaviour
         if(other.gameObject.tag == "Wall")
         {
             PlayerHP -= 0.25f;
-            HPimg.DOFillAmount(PlayerHP, 0.5f);
+            HPimg.DOFillAmount(PlayerHP, 0.3f);
+            if(PlayerHP == 0)
+            {
+                GameOver = true;
+            }
         }
 
         if(other.gameObject.tag == "HPItem")
         {
             PlayerHP += 0.25f;
-            HPimg.DOFillAmount(PlayerHP, 0.5f);
+            HPimg.DOFillAmount(PlayerHP, 0.3f);
         }
 
         if(other.gameObject.tag == "JumpItem")
@@ -74,7 +83,7 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// 自走用メソッド
     /// </summary>
-    void Accel()
+    public void Accel()
     {
         rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, speed);
     }
@@ -120,11 +129,11 @@ public class PlayerController : MonoBehaviour
         
     }
 
-   void Jump()
+    void Jump()
     {      
         rb.AddForce(Vector3.up * 370);
         JumppingFlag = false;
         JumpIcon.enabled = false;
     }
- 
+
 }
