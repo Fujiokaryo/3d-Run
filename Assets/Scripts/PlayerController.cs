@@ -15,6 +15,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Image JumpIcon;
 
+    [SerializeField]
+    private GameMaster gameMaster;
+
+    private int gameLevel;
+
     private float PlayerHP = 1;
     private Rigidbody rb;
     private bool JumppingFlag;
@@ -23,6 +28,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        
     }
 
     // Update is called once per frame
@@ -59,12 +65,23 @@ public class PlayerController : MonoBehaviour
     {
         if(other.gameObject.tag == "Wall")
         {
-            PlayerHP -= 0.25f;
-            HPimg.DOFillAmount(PlayerHP, 0.3f);
-            if(PlayerHP == 0)
+            gameLevel = gameMaster.GetComponent<GameMaster>().gameLevel;
+            if (gameLevel <= 3)
+            {
+                PlayerHP -= 0.25f;
+                HPimg.DOFillAmount(PlayerHP, 0.2f);
+            }
+            else if(gameLevel >= 4)
+            {
+                PlayerHP -= 0.4f;
+                HPimg.DOFillAmount(PlayerHP, 0.2f);
+            }
+
+            if (PlayerHP == 0)
             {
                 GameOver = true;
             }
+
         }
 
         if(other.gameObject.tag == "HPItem")

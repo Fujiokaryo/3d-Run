@@ -17,9 +17,6 @@ public class StageCreate : MonoBehaviour
     public GameObject[] ObjPrefabs;
 
     [SerializeField]
-    private float objSpan;
-
-    [SerializeField]
     private int wallPer;
 
     [SerializeField]
@@ -34,10 +31,14 @@ public class StageCreate : MonoBehaviour
     [SerializeField]
     private int jumpItemPer;
 
+    [SerializeField]
+    private GameMaster gameMaster;
+
+    private int gameLevel;
     private int border = 1000;
     private float playTime;
-    
-    
+    private float objSpan;
+
 
     void Start()
     {
@@ -48,10 +49,28 @@ public class StageCreate : MonoBehaviour
     void Update()
     {
         playTime += Time.deltaTime;
-        
-        if(transform.position.z > border)
+        gameLevel = gameMaster.GetComponent<GameMaster>().gameLevel;
+
+        if (transform.position.z > border)
         {
             CreateMap();
+        }
+
+        if(gameLevel <= 2)
+        {
+            objSpan = 1.2f;
+        }
+        else if(2 < gameLevel && gameLevel <= 4)
+        {
+            objSpan = 1f;
+        }
+        else if(4 < gameLevel && gameLevel <= 6)
+        {
+            objSpan = 0.8f;
+        }
+        else if(gameLevel > 6)
+        {
+            objSpan = 0.6f;
         }
 
         if(playTime > objSpan)
@@ -60,6 +79,7 @@ public class StageCreate : MonoBehaviour
             CreateObj2();
             CreateObj3();
             CreateObj4();
+            Debug.Log(objSpan);
         }
     }
 

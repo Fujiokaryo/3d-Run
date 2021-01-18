@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class GameMaster : MonoBehaviour
 {
@@ -11,11 +12,12 @@ public class GameMaster : MonoBehaviour
     [SerializeField]
     public Text levelText;
 
+    public int gameLevel = 1;
+
+    private int levelUp = 30;
     private int score;
     private int timeScore;
-    private int itemPoint;
-    private int gameLevel = 1;
-    private int levelUp = 30;
+    private int itemPoint; 
     private float keepPlayTime;
     private float keepPlayTimeSep = 3;
     
@@ -38,13 +40,16 @@ public class GameMaster : MonoBehaviour
         if (keepPlayTime > levelUp)
         {
             gameLevel++;
-            levelUp += 60;
+            levelUp += 30;
         }
 
         levelText.text = gameLevel.ToString();
         scoreText.text = score.ToString();
     }
 
+    /// <summary>
+    /// 時間経過でポイント加算
+    /// </summary>
     void AddTimePoint()
     {
         if (gameLevel <= 5)
@@ -63,6 +68,10 @@ public class GameMaster : MonoBehaviour
         score += timeScore;
         keepPlayTimeSep += 3;
     }
+
+    /// <summary>
+    /// アイテムによるポイント加算
+    /// </summary>
     public void AddPoint()
     {
         if (gameLevel <= 5)
@@ -80,4 +89,5 @@ public class GameMaster : MonoBehaviour
 
         score += itemPoint;
     }
+
 }
