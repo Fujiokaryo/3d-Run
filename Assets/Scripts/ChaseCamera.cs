@@ -11,13 +11,14 @@ public class ChaseCamera : MonoBehaviour
     void Start()
     {     
         offset = transform.position - target.transform.position;
+        offset.x = 0;
     }
 
     void Update()
     {
         if (target != null)
         {           
-            transform.position = target.transform.position + offset;
+            transform.position = new Vector3(0,target.transform.position.y,target.transform. position.z) + offset;
         }
     }
 }

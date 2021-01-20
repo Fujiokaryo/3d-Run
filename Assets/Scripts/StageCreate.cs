@@ -115,21 +115,21 @@ public class StageCreate : MonoBehaviour
         int randomItemValue = Random.Range(0, 100);
         if(randomValue < wallPer)
         {
-           Instantiate(ObjPrefabs[0], new Vector3(-5f, 1f, player.transform.position.z + 80f), Quaternion.identity);
+           Instantiate(ObjPrefabs[0], new Vector3(-2.2f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
         }
         else if(wallPer <= randomValue && randomValue < wallPer + itemPer)
         {
             if(randomItemValue < hpItemPer)
             {
-                Instantiate(ObjPrefabs[1], new Vector3(-5f, 1f, player.transform.position.z + 80f), Quaternion.identity);
+                Instantiate(ObjPrefabs[1], new Vector3(-2.2f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
             }
             else if(hpItemPer <= randomItemValue && randomItemValue <hpItemPer + scoreItemPer)
             {
-                Instantiate(ObjPrefabs[3], new Vector3(-5f, 1f, player.transform.position.z + 80f), Quaternion.identity);
+                Instantiate(ObjPrefabs[3], new Vector3(-2.2f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
             }
             else if(hpItemPer + scoreItemPer <= randomItemValue &&  randomItemValue <= hpItemPer + scoreItemPer + jumpItemPer)
             {
-                Instantiate(ObjPrefabs[2], new Vector3(-5f, 1f, player.transform.position.z + 80f), Quaternion.identity);
+                Instantiate(ObjPrefabs[2], new Vector3(-2.2f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
             }
         }
        
@@ -145,21 +145,21 @@ public class StageCreate : MonoBehaviour
         int randomItemValue = Random.Range(0, 100);
         if (randomValue < wallPer)
         {
-            Instantiate(ObjPrefabs[0], new Vector3(-1.5f, 1f, player.transform.position.z + 80f), Quaternion.identity);
+            Instantiate(ObjPrefabs[0], new Vector3(-0.6f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
         }
         else if (wallPer <= randomValue && randomValue < wallPer + itemPer)
         {
             if (randomItemValue < hpItemPer)
             {
-                Instantiate(ObjPrefabs[1], new Vector3(-1.5f, 1f, player.transform.position.z + 80f), Quaternion.identity);
+                Instantiate(ObjPrefabs[1], new Vector3(-0.6f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
             }
             else if (hpItemPer <= randomItemValue && randomItemValue < hpItemPer + scoreItemPer)
             {
-                Instantiate(ObjPrefabs[3], new Vector3(-1.5f, 1f, player.transform.position.z + 80f), Quaternion.identity);
+                Instantiate(ObjPrefabs[3], new Vector3(-0.6f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
             }
             else if (hpItemPer + scoreItemPer <= randomItemValue && randomItemValue <= hpItemPer + scoreItemPer + jumpItemPer)
             {
-                Instantiate(ObjPrefabs[2], new Vector3(-1.5f, 1f, player.transform.position.z + 80f), Quaternion.identity);
+                Instantiate(ObjPrefabs[2], new Vector3(-0.6f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
             }
         }
 
@@ -175,21 +175,21 @@ public class StageCreate : MonoBehaviour
         int randomItemValue = Random.Range(0, 100);
         if (randomValue < wallPer)
         {
-            Instantiate(ObjPrefabs[0], new Vector3(1.5f, 1f, player.transform.position.z + 80f), Quaternion.identity);
+            Instantiate(ObjPrefabs[0], new Vector3(1f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
         }
         else if (wallPer <= randomValue && randomValue < wallPer + itemPer)
         {
             if (randomItemValue < hpItemPer)
             {
-                Instantiate(ObjPrefabs[1], new Vector3(1.5f, 1f, player.transform.position.z + 80f), Quaternion.identity);
+                Instantiate(ObjPrefabs[1], new Vector3(1f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
             }
             else if (hpItemPer <= randomItemValue && randomItemValue < hpItemPer + scoreItemPer)
             {
-                Instantiate(ObjPrefabs[3], new Vector3(1.5f, 1f, player.transform.position.z + 80f), Quaternion.identity);
+                Instantiate(ObjPrefabs[3], new Vector3(1f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
             }
             else if (hpItemPer + scoreItemPer <= randomItemValue && randomItemValue <= hpItemPer + scoreItemPer + jumpItemPer)
             {
-                Instantiate(ObjPrefabs[2], new Vector3(1.5f, 1f, player.transform.position.z + 80f), Quaternion.identity);
+                Instantiate(ObjPrefabs[2], new Vector3(1f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
             }
         }
 
@@ -205,21 +205,21 @@ public class StageCreate : MonoBehaviour
         int randomItemValue = Random.Range(0, 100);
         if (randomValue < wallPer)
         {
-            Instantiate(ObjPrefabs[0], new Vector3(5f, 1f, player.transform.position.z + 80f), Quaternion.identity);
+            Instantiate(ObjPrefabs[0], new Vector3(2.6f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
         }
         else if (wallPer <= randomValue && randomValue < wallPer + itemPer)
         {
             if (randomItemValue < hpItemPer)
             {
-                Instantiate(ObjPrefabs[1], new Vector3(5f, 1f, player.transform.position.z + 80f), Quaternion.identity);
+                Instantiate(ObjPrefabs[1], new Vector3(2.6f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
             }
             else if (hpItemPer <= randomItemValue && randomItemValue < hpItemPer + scoreItemPer)
             {
-                Instantiate(ObjPrefabs[3], new Vector3(5f, 1f, player.transform.position.z + 80f), Quaternion.identity);
+                Instantiate(ObjPrefabs[3], new Vector3(2.6f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
             }
             else if (hpItemPer + scoreItemPer <= randomItemValue && randomItemValue <= hpItemPer + scoreItemPer + jumpItemPer)
             {
-                Instantiate(ObjPrefabs[2], new Vector3(5f, 1f, player.transform.position.z + 80f), Quaternion.identity);
+                Instantiate(ObjPrefabs[2], new Vector3(2.6f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
             }
         }
 

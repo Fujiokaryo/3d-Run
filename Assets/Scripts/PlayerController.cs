@@ -18,8 +18,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private GameMaster gameMaster;
 
-    private int gameLevel;
+    public float jumpPower;
 
+    private Animator animator;
+
+    private int gameLevel;
     private float PlayerHP = 1;
     private Rigidbody rb;
     private bool JumppingFlag;
@@ -28,7 +31,10 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        
+        animator = GetComponent<Animator>();
+        JumppingFlag = true;
+
+
     }
 
     // Update is called once per frame
@@ -77,9 +83,10 @@ public class PlayerController : MonoBehaviour
                 HPimg.DOFillAmount(PlayerHP, 0.2f);
             }
 
-            if (PlayerHP == 0)
+            if (PlayerHP <= 0)
             {
                 GameOver = true;
+                Debug.Log(GameOver);
             }
 
         }
@@ -87,6 +94,11 @@ public class PlayerController : MonoBehaviour
         if(other.gameObject.tag == "HPItem")
         {
             PlayerHP += 0.25f;
+            if(PlayerHP > 1)
+            {
+                PlayerHP = 1;
+            }
+
             HPimg.DOFillAmount(PlayerHP, 0.3f);
         }
 
@@ -103,6 +115,7 @@ public class PlayerController : MonoBehaviour
     public void Accel()
     {
         rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, speed);
+        Debug.Log("加速");
     }
 
     /// <summary>
@@ -111,17 +124,17 @@ public class PlayerController : MonoBehaviour
     void Right()
     {
 
-        if (transform.position.x == -5)
+        if (transform.position.x >= -2.5f && transform.position.x <= 2f)
         {
-            transform.Translate(3.5f, 0, 0);
+            transform.Translate(1.6f, 0, 0);
         }
-        else if (transform.position.x == -1.5)
+        else if (transform.position.x >= -1f&& transform.position.x <= 0)
         {
-            transform.Translate(3f, 0, 0);
+            transform.Translate(1.6f, 0, 0);
         }
-        else if (transform.position.x == 1.5)
+        else if (transform.position.x >= 0.5f && transform.position.x <= 1.5f )
         {
-            transform.Translate(3.5f, 0, 0);
+            transform.Translate(1.6f, 0, 0);
         }
 
     }
@@ -131,26 +144,28 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     void Left()
     {
-        if (transform.position.x == 5)
+        if (transform.position.x >= 2.5f && transform.position.x <= 3)
         {
-            transform.Translate(-3.5f, 0, 0);
+            transform.Translate(-1.6f, 0, 0);
         }
-        else if (transform.position.x == 1.5)
+        else if (transform.position.x >= 0.5f && transform.position.x <= 1.5f)
         {
-            transform.Translate(-3f, 0, 0);
+            transform.Translate(-1.6f, 0, 0);
         }
-        else if (transform.position.x == -1.5)
+        else if (transform.position.x >= -1f && transform.position.x <= 0)
         {
-            transform.Translate(-3.5f, 0, 0);
+            transform.Translate(-1.6f, 0, 0);
         }
         
     }
 
     void Jump()
     {      
-        rb.AddForce(Vector3.up * 370);
+        rb.AddForce(Vector3.up * jumpPower);
+        animator.SetTrigger("jump");
         JumppingFlag = false;
         JumpIcon.enabled = false;
+
     }
 
 }
