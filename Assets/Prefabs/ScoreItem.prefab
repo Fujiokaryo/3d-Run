@@ -107,3 +107,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 311a43bd967be684cb8964d3193dcc65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healEffect: {fileID: 100004, guid: d2b3bb95ad1a24e7c9893dec33b57b50, type: 3}
+  objSe: {fileID: 8300000, guid: 427d4e3705f8a084f80ae5798b0d44d2, type: 3}

@@ -16,31 +16,48 @@ public class PlayerController : MonoBehaviour
     private Image JumpIcon;
 
     [SerializeField]
+    private Text countDownText;
+
+    [SerializeField]
     private GameMaster gameMaster;
 
     public float jumpPower;
 
     private Animator animator;
 
+    
     private int gameLevel;
+    private float countDown = 3;
     private float PlayerHP = 1;
     private Rigidbody rb;
     private bool JumppingFlag;
-    private bool GameOver = false;
+    public bool isStart = false;
+    public bool GameOver = false;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         JumppingFlag = true;
-
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(GameOver == true)
+        if(isStart == false)
+        {
+            countDown -= Time.deltaTime;
+            countDownText.text = countDown.ToString("F2");
+            if(countDown < 0)
+            {
+                isStart = true;
+                gameMaster.GameStart();
+                countDown = 0;      
+            }
+
+        }
+
+        if(GameOver == true || isStart == false)
         {
             return;
         }
@@ -71,7 +88,8 @@ public class PlayerController : MonoBehaviour
     {
         if(other.gameObject.tag == "Wall")
         {
-            gameLevel = gameMaster.GetComponent<GameMaster>().gameLevel;
+            gameLevel = gameMaster.gameLevel;
+
             if (gameLevel <= 3)
             {
                 PlayerHP -= 0.25f;
@@ -115,7 +133,7 @@ public class PlayerController : MonoBehaviour
     public void Accel()
     {
         rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, speed);
-        Debug.Log("加速");
+        //Debug.Log("加速");
     }
 
     /// <summary>

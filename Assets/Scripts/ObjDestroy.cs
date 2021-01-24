@@ -4,11 +4,20 @@ using UnityEngine;
 
 public class ObjDestroy : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject healEffect;
+
+    [SerializeField]
+    private AudioClip objSe;
+
+    private GameObject player;
+
     private GameObject gameMaster;
 
     private void Start()
     {
         gameMaster = GameObject.Find("GameMaster");
+        player = GameObject.Find("unitychan");
     }
     void Update()
     {
@@ -20,14 +29,31 @@ public class ObjDestroy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(gameObject.tag == "ScoreItem" && other.gameObject.tag == "Player")
+        if(gameObject.tag == "ScoreItem")
         {
             gameMaster.GetComponent<GameMaster>().AddPoint();
+            AudioSource.PlayClipAtPoint(objSe, transform.position);
+            Destroy(gameObject);
         }
 
-        if (gameObject.tag != "Wall"  && other.gameObject.tag == "Player")
+        if(gameObject.tag == "HPItem")
         {
+            GameObject heal = Instantiate(healEffect, transform.position, Quaternion.identity);
+            heal.transform.position = new Vector3(heal.transform.position.x, heal.transform.position.y, heal.transform.position.z + 2f);
+            Destroy(heal, 1.0f);
+            AudioSource.PlayClipAtPoint(objSe, transform.position);
             Destroy(gameObject);
+        }
+
+        if(gameObject.tag == "JumpItem")
+        {
+            AudioSource.PlayClipAtPoint(objSe, transform.position);
+            Destroy(gameObject);
+        }
+
+        if (gameObject.tag == "Wall"  && other.gameObject.tag == "Player")
+        {
+            AudioSource.PlayClipAtPoint(objSe, transform.position);
         }
     }
 }

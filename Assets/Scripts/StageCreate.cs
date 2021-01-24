@@ -38,6 +38,7 @@ public class StageCreate : MonoBehaviour
     private int border = 1000;
     private float playTime;
     private float objSpan;
+    private bool isStart;
 
 
     void Start()
@@ -48,8 +49,14 @@ public class StageCreate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        isStart = GameObject.Find("unitychan").GetComponent<PlayerController>().isStart;
+        if (isStart == false)
+        {
+            return;
+        }
+
         playTime += Time.deltaTime;
-        gameLevel = gameMaster.GetComponent<GameMaster>().gameLevel;
+        gameLevel = gameMaster.gameLevel;
 
         if (transform.position.z > border)
         {
@@ -68,13 +75,26 @@ public class StageCreate : MonoBehaviour
         {
             objSpan = 0.8f;
         }
-        else if(gameLevel > 6)
+        else if(6 < gameLevel && gameLevel <= 8)
         {
             objSpan = 0.6f;
         }
+        else if (gameLevel > 8)
+        {
+            objSpan = 0.4f;
+        }
 
-        if(playTime > objSpan)
+
+        if (playTime > objSpan)
         {   
+            if(4 <= gameLevel && gameLevel <=7)
+            {
+                wallPer = 60;
+            }
+            if(gameLevel > 7)
+            {
+                wallPer = 65;
+            }
             CreateObj1();
             CreateObj2();
             CreateObj3();

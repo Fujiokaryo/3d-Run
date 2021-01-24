@@ -12,23 +12,46 @@ public class GameMaster : MonoBehaviour
     [SerializeField]
     public Text levelText;
 
+    [SerializeField]
+    private Text PlayTimeText;
+
+    [SerializeField]
+    private GameObject HPGauge;
+
+    [SerializeField]
+    private GameObject jumpIcon;
+
+    [SerializeField]
+    private GameObject countDownCanvas;
+
+    [SerializeField]
+    private GameObject scoreCanvas;
+
+    [SerializeField]
+    private GameObject levelCanvas;
+
+    [SerializeField]
+    private GameObject playTimeCanvas;
+
     public int gameLevel = 1;
 
     private int levelUp = 30;
     private int score;
     private int timeScore;
     private int itemPoint; 
-    private float keepPlayTime;
+    private float keepPlayTime = -3;
     private float keepPlayTimeSep = 3;
+    private bool gameOver;
     
     void Start()
     {
-        
+        gameOver = GameObject.Find("unitychan").GetComponent<PlayerController>().GameOver;
     }
 
     // Update is called once per frame
     void Update()
     {
+    
         keepPlayTime += Time.deltaTime;
 
 
@@ -40,11 +63,13 @@ public class GameMaster : MonoBehaviour
         if (keepPlayTime > levelUp)
         {
             gameLevel++;
-            levelUp += 30;
+            levelText.text = gameLevel.ToString();
+            levelUp += 20;
         }
-
-        levelText.text = gameLevel.ToString();
-        scoreText.text = score.ToString();
+        if (gameOver == false)
+        {
+            PlayTimeText.text = keepPlayTime.ToString("F2");
+        }
     }
 
     /// <summary>
@@ -67,6 +92,7 @@ public class GameMaster : MonoBehaviour
 
         score += timeScore;
         keepPlayTimeSep += 3;
+        scoreText.text = score.ToString();
     }
 
     /// <summary>
@@ -88,6 +114,17 @@ public class GameMaster : MonoBehaviour
         }
 
         score += itemPoint;
+        scoreText.text = score.ToString();
+    }
+
+    public void GameStart()
+    {
+        HPGauge.SetActive(true);
+        jumpIcon.SetActive(true);
+        countDownCanvas.SetActive(false);
+        scoreCanvas.SetActive(true);
+        levelCanvas.SetActive(true);
+        playTimeCanvas.SetActive(true); 
     }
 
 }
