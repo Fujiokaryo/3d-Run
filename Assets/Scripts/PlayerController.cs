@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
 
     
     private int gameLevel;
+    private float gameOverTime;
     private float countDown = 3;
     private float PlayerHP = 1;
     private Rigidbody rb;
@@ -59,6 +60,16 @@ public class PlayerController : MonoBehaviour
 
         if(GameOver == true || isStart == false)
         {
+            if(GameOver == true)
+            {
+                gameOverTime += Time.deltaTime;
+                PlayerHP = 0;
+                if(gameOverTime > 3f)
+                {
+                    animator.SetBool("rest", true);
+                    
+                }
+            }
             return;
         }
 
@@ -104,7 +115,6 @@ public class PlayerController : MonoBehaviour
             if (PlayerHP <= 0)
             {
                 GameOver = true;
-                Debug.Log(GameOver);
             }
 
         }
