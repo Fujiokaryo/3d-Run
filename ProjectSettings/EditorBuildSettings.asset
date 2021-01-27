@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SoloMode.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/DuoMode.unity
+    guid: 15f816abafffc704397b9c1dbe6ac80c
   m_configObjects: {}

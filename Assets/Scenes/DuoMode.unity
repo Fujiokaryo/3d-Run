@@ -1243,6 +1243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 30
+  rightplayerCon: {fileID: 1910956605}
   isStart: 0
   GameOver: 0
 --- !u!136 &905358353
@@ -2306,7 +2307,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1353279286}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5919c8febe3f6f48b4819e5f58d906d, type: 3}
+  m_Script: {fileID: 11500000, guid: 9ac8b386a0ccd8045924958c1a62fce3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1910956598}

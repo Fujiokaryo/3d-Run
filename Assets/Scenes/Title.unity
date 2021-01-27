@@ -372,9 +372,10 @@ GameObject:
   - component: {fileID: 326989972}
   - component: {fileID: 326989971}
   - component: {fileID: 326989970}
+  - component: {fileID: 326989973}
   m_Layer: 5
-  m_Name: Button
-  m_TagString: Untagged
+  m_Name: DuoSelectButton
+  m_TagString: duo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -479,6 +480,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 326989968}
   m_CullTransparentMesh: 0
+--- !u!114 &326989973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326989968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6804fc2ff3dce174f8e216290768fef3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &388423421
 GameObject:
   m_ObjectHideFlags: 0
@@ -1192,7 +1205,7 @@ GameObject:
   - component: {fileID: 1470459265}
   - component: {fileID: 1470459268}
   m_Layer: 5
-  m_Name: Button
+  m_Name: SoloSelectButton
   m_TagString: solo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

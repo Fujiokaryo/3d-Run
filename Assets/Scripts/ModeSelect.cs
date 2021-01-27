@@ -11,6 +11,11 @@ public class ModeSelect : MonoBehaviour
         {
             SceneManager.LoadScene("Solomode");
         }
+
+        if (gameObject.tag == "duo")
+        {
+            SceneManager.LoadScene("DuoMode");
+        }
     }
 
 }
