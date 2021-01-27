@@ -9,6 +9,7 @@ TagManager:
   - JumpItem
   - ScoreItem
   - solo
+  - duo
   layers:
   - Default
   - TransparentFX

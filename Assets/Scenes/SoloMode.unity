@@ -1521,7 +1521,7 @@ PrefabInstance:
     - target: {fileID: 3486503627944550976, guid: c5d469694bd66ea4da9230ed61564d38,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.05000305
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3486503627944550976, guid: c5d469694bd66ea4da9230ed61564d38,
         type: 3}
@@ -1703,7 +1703,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 40}
+  m_SizeDelta: {x: 160, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1296669215
 MonoBehaviour:
@@ -1726,7 +1726,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 30
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -2195,7 +2195,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d622b975d23443f40bdf882f9efced70, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.1
+  m_Volume: 0.05
   m_Pitch: 1
   Loop: 0
   Mute: 0

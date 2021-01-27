@@ -143,7 +143,6 @@ public class PlayerController : MonoBehaviour
     public void Accel()
     {
         rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, speed);
-        //Debug.Log("加速");
     }
 
     /// <summary>
@@ -193,7 +192,6 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger("jump");
         JumppingFlag = false;
         JumpIcon.enabled = false;
-
     }
 
 }

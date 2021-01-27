@@ -29,6 +29,7 @@ public class ObjDestroy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
         if(gameObject.tag == "ScoreItem")
         {
             gameMaster.GetComponent<GameMaster>().AddPoint();

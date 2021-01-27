@@ -66,6 +66,7 @@ public class GameMaster : MonoBehaviour
             levelText.text = gameLevel.ToString();
             levelUp += 20;
         }
+
         if (gameOver == false)
         {
             PlayTimeText.text = keepPlayTime.ToString("F2");
