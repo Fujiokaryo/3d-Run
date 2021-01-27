@@ -78,23 +78,10 @@ public class RightplayerCon : MonoBehaviour
             float limitX = Mathf.Clamp(transform.position.x, 1.1f, 2.7f);
             transform.position = new Vector3(limitX, transform.position.y, transform.position.z);
         }
-
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            Jump();
-        }
     }
 
     private void Accel()
     {
         rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, speed);
-    }
-
-    void Jump()
-    {
-        rb.AddForce(Vector3.up * 300);
-        animator.SetTrigger("jump");
-        JumppingFlag = false;
-        JumpIcon.enabled = false;
     }
 }

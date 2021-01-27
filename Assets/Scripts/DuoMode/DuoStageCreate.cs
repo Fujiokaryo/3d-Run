@@ -65,32 +65,30 @@ public class DuoStageCreate : MonoBehaviour
 
         if (gameLevel <= 2)
         {
-            objSpan = 1.2f;
+            objSpan = 0.8f;
         }
         else if (2 < gameLevel && gameLevel <= 4)
         {
-            objSpan = 1f;
+            objSpan = 0.6f;
         }
         else if (4 < gameLevel && gameLevel <= 6)
         {
-            objSpan = 0.8f;
+            objSpan = 0.5f;
         }
         else if (6 < gameLevel && gameLevel <= 8)
         {
-            objSpan = 0.6f;
+            objSpan = 0.4f;
         }
         else if (gameLevel > 8)
         {
-            objSpan = 0.4f;
+            objSpan = 0.3f;
         }
 
 
         if (playTime > objSpan)
         {
-            CreateObj1();
-            CreateObj2();
-            CreateObj3();
-            CreateObj4();
+            CreateLeftObj();
+            CreateRightObj();
             //Debug.Log(objSpan);
         }
     }
@@ -119,122 +117,101 @@ public class DuoStageCreate : MonoBehaviour
     }
 
     /// <summary>
-    /// 1レーン目のオブジェクト自動生成
+    /// 左側レーンのオブジェクト自動生成
     /// </summary>
-    void CreateObj1()
+    void CreateLeftObj()
     {
         int randomValue = Random.Range(0, 100);
         int randomItemValue = Random.Range(0, 100);
-        if (randomValue < wallPer)
+        if (randomValue < 50)
         {
             Instantiate(ObjPrefabs[0], new Vector3(-2.2f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
-        }
-        else if (wallPer <= randomValue && randomValue < wallPer + itemPer)
-        {
-            if (randomItemValue < hpItemPer)
+            if (randomValue < 20)
             {
-                Instantiate(ObjPrefabs[1], new Vector3(-2.2f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                if (randomItemValue < hpItemPer)
+                {
+                    Instantiate(ObjPrefabs[1], new Vector3(-0.5f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                }
+                else if (hpItemPer <= randomItemValue && randomItemValue < hpItemPer + scoreItemPer)
+                {
+                    Instantiate(ObjPrefabs[3], new Vector3(-0.5f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                }
+                else if (hpItemPer + scoreItemPer <= randomItemValue && randomItemValue <= hpItemPer + scoreItemPer + jumpItemPer)
+                {
+                    Instantiate(ObjPrefabs[2], new Vector3(-0.5f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                }
             }
-            else if (hpItemPer <= randomItemValue && randomItemValue < hpItemPer + scoreItemPer)
-            {
-                Instantiate(ObjPrefabs[3], new Vector3(-2.2f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
-            }
-            else if (hpItemPer + scoreItemPer <= randomItemValue && randomItemValue <= hpItemPer + scoreItemPer + jumpItemPer)
-            {
-                Instantiate(ObjPrefabs[2], new Vector3(-2.2f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
-            }
-        }
 
+        }
+        else if (50 <= randomValue)
+        {
+            Instantiate(ObjPrefabs[0], new Vector3(-0.5f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+            if (80 <= randomValue)
+            {
+                if (randomItemValue < hpItemPer)
+                {
+                    Instantiate(ObjPrefabs[1], new Vector3(-2.2f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                }
+                else if (hpItemPer <= randomItemValue && randomItemValue < hpItemPer + scoreItemPer)
+                {
+                    Instantiate(ObjPrefabs[3], new Vector3(-2.2f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                }
+                else if (hpItemPer + scoreItemPer <= randomItemValue && randomItemValue <= hpItemPer + scoreItemPer + jumpItemPer)
+                {
+                    Instantiate(ObjPrefabs[2], new Vector3(-2.2f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                }
+            }
+        }
         playTime = 0;
     }
 
     /// <summary>
-    /// 2レーン目のオブジェクト自動生成
+    /// 右側レーンのオブジェクト自動生成
     /// </summary>
-    void CreateObj2()
+    void CreateRightObj()
     {
         int randomValue = Random.Range(0, 100);
         int randomItemValue = Random.Range(0, 100);
-        if (randomValue < wallPer)
+        if (randomValue < 50)
         {
-            Instantiate(ObjPrefabs[0], new Vector3(-0.6f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
-        }
-        else if (wallPer <= randomValue && randomValue < wallPer + itemPer)
-        {
-            if (randomItemValue < hpItemPer)
+            Instantiate(ObjPrefabs[0], new Vector3(1.1f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+            if (randomValue < 20)
             {
-                Instantiate(ObjPrefabs[1], new Vector3(-0.6f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
-            }
-            else if (hpItemPer <= randomItemValue && randomItemValue < hpItemPer + scoreItemPer)
-            {
-                Instantiate(ObjPrefabs[3], new Vector3(-0.6f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
-            }
-            else if (hpItemPer + scoreItemPer <= randomItemValue && randomItemValue <= hpItemPer + scoreItemPer + jumpItemPer)
-            {
-                Instantiate(ObjPrefabs[2], new Vector3(-0.6f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
-            }
-        }
-
-        playTime = 0;
-    }
-
-    /// <summary>
-    /// 3レーン目のオブジェクト自動生成
-    /// </summary>
-    void CreateObj3()
-    {
-        int randomValue = Random.Range(0, 100);
-        int randomItemValue = Random.Range(0, 100);
-        if (randomValue < wallPer)
-        {
-            Instantiate(ObjPrefabs[0], new Vector3(1f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
-        }
-        else if (wallPer <= randomValue && randomValue < wallPer + itemPer)
-        {
-            if (randomItemValue < hpItemPer)
-            {
-                Instantiate(ObjPrefabs[1], new Vector3(1f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
-            }
-            else if (hpItemPer <= randomItemValue && randomItemValue < hpItemPer + scoreItemPer)
-            {
-                Instantiate(ObjPrefabs[3], new Vector3(1f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
-            }
-            else if (hpItemPer + scoreItemPer <= randomItemValue && randomItemValue <= hpItemPer + scoreItemPer + jumpItemPer)
-            {
-                Instantiate(ObjPrefabs[2], new Vector3(1f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                if (randomItemValue < hpItemPer)
+                {
+                    Instantiate(ObjPrefabs[1], new Vector3(2.7f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                }
+                else if (hpItemPer <= randomItemValue && randomItemValue < hpItemPer + scoreItemPer)
+                {
+                    Instantiate(ObjPrefabs[3], new Vector3(2.7f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                }
+                else if (hpItemPer + scoreItemPer <= randomItemValue && randomItemValue <= hpItemPer + scoreItemPer + jumpItemPer)
+                {
+                    Instantiate(ObjPrefabs[2], new Vector3(2.7f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                }
             }
         }
-
-        playTime = 0;
-    }
-
-    /// <summary>
-    /// 4レーン目のオブジェクト自動生成
-    /// </summary>
-    void CreateObj4()
-    {
-        int randomValue = Random.Range(0, 100);
-        int randomItemValue = Random.Range(0, 100);
-        if (randomValue < wallPer)
+        else if(50 <= randomValue)
         {
-            Instantiate(ObjPrefabs[0], new Vector3(2.6f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
-        }
-        else if (wallPer <= randomValue && randomValue < wallPer + itemPer)
-        {
-            if (randomItemValue < hpItemPer)
+            Instantiate(ObjPrefabs[0], new Vector3(2.7f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+            if (80 <= randomValue)
             {
-                Instantiate(ObjPrefabs[1], new Vector3(2.6f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
-            }
-            else if (hpItemPer <= randomItemValue && randomItemValue < hpItemPer + scoreItemPer)
-            {
-                Instantiate(ObjPrefabs[3], new Vector3(2.6f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
-            }
-            else if (hpItemPer + scoreItemPer <= randomItemValue && randomItemValue <= hpItemPer + scoreItemPer + jumpItemPer)
-            {
-                Instantiate(ObjPrefabs[2], new Vector3(2.6f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                if (randomItemValue < hpItemPer)
+                {
+                    Instantiate(ObjPrefabs[1], new Vector3(1.1f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                }
+                else if (hpItemPer <= randomItemValue && randomItemValue < hpItemPer + scoreItemPer)
+                {
+                    Instantiate(ObjPrefabs[3], new Vector3(1.1f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                }
+                else if (hpItemPer + scoreItemPer <= randomItemValue && randomItemValue <= hpItemPer + scoreItemPer + jumpItemPer)
+                {
+                    Instantiate(ObjPrefabs[2], new Vector3(1.1f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                }
             }
         }
-
         playTime = 0;
     }
 }
+
+   
