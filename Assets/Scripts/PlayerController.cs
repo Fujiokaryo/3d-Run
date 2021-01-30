@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         JumppingFlag = true;
+        animator.SetBool("rest", true);
     }
 
     // Update is called once per frame
@@ -52,6 +53,7 @@ public class PlayerController : MonoBehaviour
             if(countDown < 0)
             {
                 isStart = true;
+                animator.SetBool("run", true);
                 gameMaster.GameStart();
                 countDown = 0;      
             }
@@ -64,10 +66,10 @@ public class PlayerController : MonoBehaviour
             {
                 gameOverTime += Time.deltaTime;
                 PlayerHP = 0;
-                if(gameOverTime > 3f)
+                if(gameOverTime > 2f)
                 {
-                    animator.SetBool("rest", true);
-                    
+                    animator.SetBool("reflesh", true);
+                    gameMaster.ScoreCheck();
                 }
             }
             return;

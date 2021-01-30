@@ -41,11 +41,13 @@ public class GameMaster : MonoBehaviour
     private int itemPoint; 
     private float keepPlayTime = -3;
     private float keepPlayTimeSep = 3;
-    private bool gameOver;
+    private PlayerController playerController;
+    private RightplayerCon rightplayerCon;
     
     void Start()
     {
-        gameOver = GameObject.Find("unitychan").GetComponent<PlayerController>().GameOver;
+        playerController = GameObject.Find("unitychan").GetComponent<PlayerController>();
+        rightplayerCon = GameObject.Find("unitychan").GetComponent<RightplayerCon>();
     }
 
     // Update is called once per frame
@@ -54,6 +56,14 @@ public class GameMaster : MonoBehaviour
     
         keepPlayTime += Time.deltaTime;
 
+        if(GameData.instance.currentPlayType == PlayType.SoloPlay && playerController.GameOver == true)
+        {
+            return;
+        }
+        else if(GameData.instance.currentPlayType == PlayType.DuoPlay && rightplayerCon.GameOver == true)
+        {
+            return;
+        }
 
         if (keepPlayTime > keepPlayTimeSep)
         {
@@ -67,10 +77,21 @@ public class GameMaster : MonoBehaviour
             levelUp += 20;
         }
 
-        if (gameOver == false)
+        if(GameData.instance.currentPlayType == PlayType.SoloPlay)
         {
-            PlayTimeText.text = keepPlayTime.ToString("F2");
+            if (playerController.GameOver == false)
+            {
+                PlayTimeText.text = keepPlayTime.ToString("F2");
+            }
         }
+        else if(GameData.instance.currentPlayType == PlayType.DuoPlay)
+        {
+            if (rightplayerCon.GameOver == false)
+            {
+                PlayTimeText.text = keepPlayTime.ToString("F2");
+            }
+        }
+        
     }
 
     /// <summary>
@@ -126,6 +147,26 @@ public class GameMaster : MonoBehaviour
         scoreCanvas.SetActive(true);
         levelCanvas.SetActive(true);
         playTimeCanvas.SetActive(true); 
+    }
+
+    public void ScoreCheck()
+    {
+        if(GameData.instance.currentPlayType == PlayType.SoloPlay)
+        {
+            GameData.instance.LoadHighScore();
+            if(GameData.instance.soloHighScore < score)
+            {
+                GameData.instance.SaveHighScore(PlayType.SoloPlay, score);
+            }
+        }
+        else if(GameData.instance.currentPlayType == PlayType.DuoPlay)
+        {
+            GameData.instance.LoadHighScore();
+            if(GameData.instance.duoHighScore < score)
+            {
+                GameData.instance.SaveHighScore(PlayType.DuoPlay, score);
+            }
+        }
     }
 
 }

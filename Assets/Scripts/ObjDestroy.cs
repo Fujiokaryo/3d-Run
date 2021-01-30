@@ -52,7 +52,7 @@ public class ObjDestroy : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (gameObject.tag == "Wall"  && other.gameObject.tag == "Player")
+        if (gameObject.tag == "Wall")
         {
             AudioSource.PlayClipAtPoint(objSe, transform.position);
         }

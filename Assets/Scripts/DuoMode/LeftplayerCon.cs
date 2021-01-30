@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class LeftplayerCon : MonoBehaviour
 {
@@ -10,11 +12,16 @@ public class LeftplayerCon : MonoBehaviour
     [SerializeField]
     private RightplayerCon rightplayerCon;
 
-    public bool isStart = false;
+    [SerializeField]
+    private GameMaster gameMaster;
+
+    [SerializeField]
+    private Image HPimg;
+
+
+    private int gameLevel;
     private float countDown = 3;
-    private float PlayerHP = 1;
     private float gameOverTime;
-    public bool GameOver = false;
     private Animator animator;
     private Rigidbody rb;
     void Start()
@@ -27,25 +34,22 @@ public class LeftplayerCon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isStart == false)
+   
+        if(rightplayerCon.isStart == true)
         {
-            countDown -= Time.deltaTime;         
-            if (countDown < 0)
-            {
-                isStart = true;
-                countDown = 0;
-            }
+            animator.SetBool("param_idletorunning", true);
+            transform.position = new Vector3(transform.position.x, transform.position.y, GameObject.Find("unitychan").GetComponent<Transform>().position.z);
         }
 
-        if (GameOver == true || isStart == false)
+        if (rightplayerCon.GameOver == true || rightplayerCon.isStart == false)
         {
-            if (GameOver == true)
+            if (rightplayerCon.GameOver == true)
             {
                 gameOverTime += Time.deltaTime;
-                PlayerHP = 0;
-                if (gameOverTime > 3f)
+                rightplayerCon.PlayerHP = 0;
+                if (gameOverTime > 2f)
                 {
-                    animator.SetBool("rest", true);
+                    animator.SetBool("walk", true);
 
                 }
             }
@@ -67,6 +71,38 @@ public class LeftplayerCon : MonoBehaviour
             float limitX = Mathf.Clamp(transform.position.x, -2.1f, -0.5f);
             transform.position = new Vector3(limitX, transform.position.y, transform.position.z);
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Wall")
+        {
+            gameLevel = gameMaster.gameLevel;
+
+            if (gameLevel <= 3)
+            {
+                rightplayerCon.PlayerHP -= 0.25f;
+                HPimg.DOFillAmount(rightplayerCon.PlayerHP, 0.2f);
+            }
+            else if (gameLevel >= 4)
+            {
+                rightplayerCon.PlayerHP -= 0.4f;
+                HPimg.DOFillAmount(rightplayerCon.PlayerHP, 0.2f);
+            }
+
+        }
+
+        if (other.gameObject.tag == "HPItem")
+        {
+            rightplayerCon.PlayerHP += 0.25f;
+            if (rightplayerCon.PlayerHP > 1)
+            {
+                rightplayerCon.PlayerHP = 1;
+            }
+
+            HPimg.DOFillAmount(rightplayerCon.PlayerHP, 0.3f);
+        }
+
     }
 
     public void Accel()

@@ -1244,7 +1244,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 30
   rightplayerCon: {fileID: 1910956605}
-  isStart: 0
+  gameMaster: {fileID: 1353279287}
+  HPimg: {fileID: 853492403}
   GameOver: 0
 --- !u!136 &905358353
 CapsuleCollider:
@@ -1581,7 +1582,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 463472, guid: 7dc923b4c4812f147ba42a507e5507bd, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 463472, guid: 7dc923b4c4812f147ba42a507e5507bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2324,6 +2325,7 @@ MonoBehaviour:
   scoreItemPer: 60
   jumpItemPer: 10
   gameMaster: {fileID: 1353279287}
+  rightplayerCon: {fileID: 1910956605}
 --- !u!54 &1353279289
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2482,7 +2484,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400100, guid: 40046bae76ac54bffb59f14f47d9ba1b, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400100, guid: 40046bae76ac54bffb59f14f47d9ba1b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2577,26 +2579,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1910956597}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1910956599
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1910956598}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6719df90e3868648a2b416ab8cb4514, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HPimg: {fileID: 853492403}
-  speed: 30
-  JumpIcon: {fileID: 1044404260}
-  countDownText: {fileID: 323969986}
-  gameMaster: {fileID: 1353279287}
-  jumpPower: 300
-  isStart: 0
-  GameOver: 0
 --- !u!114 &1910956605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2609,13 +2591,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baf93a8fa149ced458f7ade97f2cf882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JumpIcon: {fileID: 1044404260}
+  HPimg: {fileID: 853492403}
   countDownText: {fileID: 323969986}
   gameMaster: {fileID: 1353279287}
   speed: 30
   isStart: 0
   JumppingFlag: 0
   GameOver: 0
+  PlayerHP: 1
 --- !u!1 &1924043149
 GameObject:
   m_ObjectHideFlags: 0

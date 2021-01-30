@@ -34,6 +34,9 @@ public class DuoStageCreate : MonoBehaviour
     [SerializeField]
     private GameMaster gameMaster;
 
+    [SerializeField]
+    private RightplayerCon rightplayerCon;
+
     private int gameLevel;
     private int border = 1000;
     private float playTime;
@@ -49,8 +52,8 @@ public class DuoStageCreate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isStart = GameObject.Find("unitychan").GetComponent<RightplayerCon>().isStart;
-        if (isStart == false)
+        
+        if (rightplayerCon.isStart == false)
         {
             return;
         }
