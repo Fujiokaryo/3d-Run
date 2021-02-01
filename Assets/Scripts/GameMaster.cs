@@ -33,6 +33,24 @@ public class GameMaster : MonoBehaviour
     [SerializeField]
     private GameObject playTimeCanvas;
 
+    [SerializeField]
+    private GameObject canvas;
+
+    [SerializeField]
+    private GameObject resultCanvas;
+
+    [SerializeField]
+    private Text highScoretext;
+
+    [SerializeField]
+    private Text resultScoreText;
+
+    [SerializeField]
+    private Text bestPlayTimeText;
+
+    [SerializeField]
+    private Text resultPlayTimeText;
+
     public int gameLevel = 1;
 
     private int levelUp = 30;
@@ -53,9 +71,6 @@ public class GameMaster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    
-        keepPlayTime += Time.deltaTime;
-
         if(GameData.instance.currentPlayType == PlayType.SoloPlay && playerController.GameOver == true)
         {
             return;
@@ -64,6 +79,8 @@ public class GameMaster : MonoBehaviour
         {
             return;
         }
+
+        keepPlayTime += Time.deltaTime;
 
         if (keepPlayTime > keepPlayTimeSep)
         {
@@ -77,21 +94,7 @@ public class GameMaster : MonoBehaviour
             levelUp += 20;
         }
 
-        if(GameData.instance.currentPlayType == PlayType.SoloPlay)
-        {
-            if (playerController.GameOver == false)
-            {
-                PlayTimeText.text = keepPlayTime.ToString("F2");
-            }
-        }
-        else if(GameData.instance.currentPlayType == PlayType.DuoPlay)
-        {
-            if (rightplayerCon.GameOver == false)
-            {
-                PlayTimeText.text = keepPlayTime.ToString("F2");
-            }
-        }
-        
+         PlayTimeText.text = keepPlayTime.ToString("F2");                  
     }
 
     /// <summary>
@@ -153,19 +156,47 @@ public class GameMaster : MonoBehaviour
     {
         if(GameData.instance.currentPlayType == PlayType.SoloPlay)
         {
-            GameData.instance.LoadHighScore();
             if(GameData.instance.soloHighScore < score)
             {
                 GameData.instance.SaveHighScore(PlayType.SoloPlay, score);
             }
+
+            if(GameData.instance.soloBestPlay < keepPlayTime)
+            {
+                GameData.instance.SaveBestplayTime(PlayType.SoloPlay, keepPlayTime);
+            }
         }
         else if(GameData.instance.currentPlayType == PlayType.DuoPlay)
-        {
-            GameData.instance.LoadHighScore();
+        {         
             if(GameData.instance.duoHighScore < score)
             {
                 GameData.instance.SaveHighScore(PlayType.DuoPlay, score);
             }
+
+            if(GameData.instance.duoBestPlay < keepPlayTime)
+            {
+                GameData.instance.SaveBestplayTime(PlayType.DuoPlay, keepPlayTime);
+            }
+        }
+    }
+
+    public void DisplayScore()
+    {
+        canvas.SetActive(false);
+        resultCanvas.SetActive(true);
+        if(GameData.instance.currentPlayType == PlayType.SoloPlay)
+        {
+            highScoretext.text = GameData.instance.soloHighScore.ToString();
+            bestPlayTimeText.text = GameData.instance.soloBestPlay.ToString("F2") + "s";
+            resultScoreText.text = score.ToString();
+            resultPlayTimeText.text = keepPlayTime.ToString("F2") + "s";
+        }
+        else if(GameData.instance.currentPlayType == PlayType.DuoPlay)
+        {
+            highScoretext.text = GameData.instance.duoHighScore.ToString();
+            bestPlayTimeText.text = GameData.instance.duoBestPlay.ToString("F2") + "s";
+            resultScoreText.text = score.ToString();
+            resultPlayTimeText.text = keepPlayTime.ToString("F2") + "s";
         }
     }
 

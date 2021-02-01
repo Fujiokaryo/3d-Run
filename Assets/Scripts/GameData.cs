@@ -9,6 +9,8 @@ public class GameData : MonoBehaviour
 
     public int soloHighScore;
     public int duoHighScore;
+    public float soloBestPlay;
+    public float duoBestPlay;
     public PlayType currentPlayType;
     
     private void Awake()
@@ -30,14 +32,20 @@ public class GameData : MonoBehaviour
     {
         PlayerPrefs.SetInt(savePlayType.ToString(), highscore);
         PlayerPrefs.Save();
-        //Debug.Log(highscore);
     }
 
     public void LoadHighScore()
     {
        soloHighScore = PlayerPrefs.GetInt(PlayType.SoloPlay.ToString(), 0);
        duoHighScore = PlayerPrefs.GetInt(PlayType.DuoPlay.ToString(), 0);
+       soloBestPlay = PlayerPrefs.GetFloat(PlayType.SoloPlay.ToString(), 0);
+       duoBestPlay = PlayerPrefs.GetFloat(PlayType.DuoPlay.ToString(), 0);
     }
 
+    public void SaveBestplayTime(PlayType savePlayType, float bestplaytime)
+    {
+        PlayerPrefs.SetFloat(savePlayType.ToString(), bestplaytime);
+        PlayerPrefs.Save();
+    }
 
 }

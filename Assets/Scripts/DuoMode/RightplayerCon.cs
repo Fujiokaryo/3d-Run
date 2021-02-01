@@ -61,7 +61,9 @@ public class RightplayerCon : MonoBehaviour
                 if (gameOverTime > 2f)
                 {
                     animator.SetBool("reflesh", true);
-                    gameMaster.ScoreCheck();
+                    gameMaster.ScoreCheck();                 
+                    gameMaster.DisplayScore();                   
+                    
                 }
             }
             return;
@@ -87,6 +89,11 @@ public class RightplayerCon : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if(GameOver == true)
+        {
+            return;
+        }
+
         if (other.gameObject.tag == "Wall")
         {
             gameLevel = gameMaster.gameLevel;

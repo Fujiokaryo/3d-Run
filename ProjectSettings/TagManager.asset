@@ -10,6 +10,9 @@ TagManager:
   - ScoreItem
   - solo
   - duo
+  - title
+  - retry
+  - exit
   layers:
   - Default
   - TransparentFX

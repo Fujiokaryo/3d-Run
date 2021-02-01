@@ -14,10 +14,15 @@ public class ObjDestroy : MonoBehaviour
 
     private GameObject gameMaster;
 
+    private PlayerController playerController;
+    private RightplayerCon rightplayerCon;
+
     private void Start()
     {
         gameMaster = GameObject.Find("GameMaster");
         player = GameObject.Find("unitychan");
+        playerController = player.GetComponent<PlayerController>();
+        rightplayerCon = GameObject.Find("unitychan").GetComponent<RightplayerCon>();
     }
     void Update()
     {
@@ -29,6 +34,20 @@ public class ObjDestroy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (GameData.instance.currentPlayType == PlayType.SoloPlay)
+        {
+            if (playerController.GameOver == true)
+            {
+                return;
+            }
+        }
+        else if (GameData.instance.currentPlayType == PlayType.DuoPlay)
+        {
+            if (rightplayerCon.GameOver == true)
+            {
+                return;
+            }
+        }
 
         if(gameObject.tag == "ScoreItem")
         {

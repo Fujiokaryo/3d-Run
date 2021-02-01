@@ -75,6 +75,12 @@ public class LeftplayerCon : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
+        if(rightplayerCon.GameOver == true)
+        {
+            return;
+        }
+
         if (other.gameObject.tag == "Wall")
         {
             gameLevel = gameMaster.gameLevel;

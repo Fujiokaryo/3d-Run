@@ -70,6 +70,7 @@ public class PlayerController : MonoBehaviour
                 {
                     animator.SetBool("reflesh", true);
                     gameMaster.ScoreCheck();
+                    gameMaster.DisplayScore();
                 }
             }
             return;
@@ -99,6 +100,11 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if(GameOver == true)
+        {
+            return;
+        }
+
         if(other.gameObject.tag == "Wall")
         {
             gameLevel = gameMaster.gameLevel;
