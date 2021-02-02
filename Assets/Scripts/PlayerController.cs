@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     private float PlayerHP = 1;
     private Rigidbody rb;
     private bool JumppingFlag;
+    private bool clearFlag;
     public bool isStart = false;
     public bool GameOver = false;
 
@@ -66,11 +67,17 @@ public class PlayerController : MonoBehaviour
             {
                 gameOverTime += Time.deltaTime;
                 PlayerHP = 0;
+                
                 if(gameOverTime > 2f)
                 {
                     animator.SetBool("reflesh", true);
-                    gameMaster.ScoreCheck();
-                    gameMaster.DisplayScore();
+                    if (!clearFlag)
+                    {
+                        gameMaster.ScoreCheck();
+                        gameMaster.DisplayScore();
+                        clearFlag = true;
+                    }
+
                 }
             }
             return;

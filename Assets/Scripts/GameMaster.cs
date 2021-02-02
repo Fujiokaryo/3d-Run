@@ -51,6 +51,9 @@ public class GameMaster : MonoBehaviour
     [SerializeField]
     private Text resultPlayTimeText;
 
+    [SerializeField]
+    private SkyboxChanger skyboxChanger;
+
     public int gameLevel = 1;
 
     private int levelUp = 30;
@@ -61,7 +64,12 @@ public class GameMaster : MonoBehaviour
     private float keepPlayTimeSep = 3;
     private PlayerController playerController;
     private RightplayerCon rightplayerCon;
-    
+
+
+    private void Awake()
+    {
+        skyboxChanger.ChangeSkybox();
+    }
     void Start()
     {
         playerController = GameObject.Find("unitychan").GetComponent<PlayerController>();
@@ -159,12 +167,14 @@ public class GameMaster : MonoBehaviour
             if(GameData.instance.soloHighScore < score)
             {
                 GameData.instance.SaveHighScore(PlayType.SoloPlay, score);
+
+                if (GameData.instance.soloBestPlay < keepPlayTime)
+                {
+                    GameData.instance.SaveBestplayTime(PlayType.SoloPlay, keepPlayTime);
+                }
             }
 
-            if(GameData.instance.soloBestPlay < keepPlayTime)
-            {
-                GameData.instance.SaveBestplayTime(PlayType.SoloPlay, keepPlayTime);
-            }
+            
         }
         else if(GameData.instance.currentPlayType == PlayType.DuoPlay)
         {         

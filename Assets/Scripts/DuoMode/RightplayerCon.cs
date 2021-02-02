@@ -20,6 +20,7 @@ public class RightplayerCon : MonoBehaviour
     public float speed;
 
     public bool isStart = false;
+    private bool clearFlag;
     public bool JumppingFlag;
     public bool GameOver = false;
     public float PlayerHP = 1;
@@ -61,9 +62,12 @@ public class RightplayerCon : MonoBehaviour
                 if (gameOverTime > 2f)
                 {
                     animator.SetBool("reflesh", true);
-                    gameMaster.ScoreCheck();                 
-                    gameMaster.DisplayScore();                   
-                    
+                    if (!clearFlag)
+                    {
+                        gameMaster.ScoreCheck();
+                        gameMaster.DisplayScore();
+                        clearFlag = true;
+                    }
                 }
             }
             return;
