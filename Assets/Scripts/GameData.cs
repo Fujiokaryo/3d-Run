@@ -34,6 +34,12 @@ public class GameData : MonoBehaviour
         PlayerPrefs.Save();
     }
 
+    public void SaveBestplayTime(PlayType savePlayType, float bestplaytime)
+    {
+        PlayerPrefs.SetFloat(savePlayType.ToString(), bestplaytime);
+        PlayerPrefs.Save();
+    }
+
     public void LoadHighScore()
     {
        soloHighScore = PlayerPrefs.GetInt(PlayType.SoloPlay.ToString(), 0);
@@ -42,10 +48,5 @@ public class GameData : MonoBehaviour
        duoBestPlay = PlayerPrefs.GetFloat(PlayType.DuoPlay.ToString(), 0);
     }
 
-    public void SaveBestplayTime(PlayType savePlayType, float bestplaytime)
-    {
-        PlayerPrefs.SetFloat(savePlayType.ToString(), bestplaytime);
-        PlayerPrefs.Save();
-    }
 
 }
