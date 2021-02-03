@@ -49,8 +49,14 @@ public class LeftplayerCon : MonoBehaviour
                 rightplayerCon.PlayerHP = 0;
                 if (gameOverTime > 2f)
                 {
-                    animator.SetBool("walk", true);
+                    animator.SetBool("hit", true);
 
+                    if(gameOverTime > 3.2f)
+                    {
+                        animator.SetBool("param_idletorunning", false);
+                        animator.SetBool("walk", true);
+                    }
+                    
                 }
             }
             return;

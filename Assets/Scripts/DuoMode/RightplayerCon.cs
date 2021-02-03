@@ -24,7 +24,7 @@ public class RightplayerCon : MonoBehaviour
     public bool JumppingFlag;
     public bool GameOver = false;
     public float PlayerHP = 1;
-    private float countDown = 3;
+    public float countDown = 3;
     private float gameOverTime;
     private int gameLevel;
     private Animator animator;
