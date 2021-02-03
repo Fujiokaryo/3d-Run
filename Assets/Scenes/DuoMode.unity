@@ -1940,6 +1940,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Road
       objectReference: {fileID: 0}
+    - target: {fileID: 3486503627944550990, guid: c5d469694bd66ea4da9230ed61564d38,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6a8dd6b779ebd9b43800de9ca5bff82a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5d469694bd66ea4da9230ed61564d38, type: 3}
 --- !u!1 &615483481 stripped
@@ -2500,6 +2505,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Road2
       objectReference: {fileID: 0}
+    - target: {fileID: 3486503627944550990, guid: c5d469694bd66ea4da9230ed61564d38,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6a8dd6b779ebd9b43800de9ca5bff82a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5d469694bd66ea4da9230ed61564d38, type: 3}
 --- !u!1 &1139236928 stripped
