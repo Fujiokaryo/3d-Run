@@ -131,6 +131,12 @@ public class RightplayerCon : MonoBehaviour
             HPimg.DOFillAmount(PlayerHP, 0.3f);
         }
 
+        if(other.gameObject.tag == "fullHPItem")
+        {
+            PlayerHP = 1;
+            HPimg.DOFillAmount(PlayerHP, 0.3f);
+        }
+
     }
 
     private void Accel()

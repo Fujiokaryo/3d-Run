@@ -109,6 +109,12 @@ public class LeftplayerCon : MonoBehaviour
             HPimg.DOFillAmount(rightplayerCon.PlayerHP, 0.3f);
         }
 
+        if (other.gameObject.tag == "fullHPItem")
+        {
+            rightplayerCon.PlayerHP = 1;
+            HPimg.DOFillAmount(rightplayerCon.PlayerHP, 0.3f);
+        }
+
     }
 
     public void Accel()

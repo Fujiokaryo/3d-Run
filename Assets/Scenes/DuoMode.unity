@@ -3388,13 +3388,13 @@ MonoBehaviour:
   ObjPrefabs:
   - {fileID: 9047151753645292429, guid: 84cf481b5d6284348aef68e8437c9146, type: 3}
   - {fileID: 8143971759249058556, guid: 0f7a40a007606d748a1746a35fe056e9, type: 3}
-  - {fileID: 3351102702048643854, guid: 8ddd24b5b861a5541b353fc1d3a5c58f, type: 3}
+  - {fileID: 211965589381467981, guid: 8e49c6fa51e9fb944b47d69cdbe848c6, type: 3}
   - {fileID: 4326433148465206195, guid: 5ea72175883742d4eba5be7dbd1df801, type: 3}
   wallPer: 50
   itemPer: 30
   hpItemPer: 30
   scoreItemPer: 60
-  jumpItemPer: 10
+  jumpItemPer: 5
   gameMaster: {fileID: 1353279287}
   rightplayerCon: {fileID: 1910956605}
 --- !u!54 &1353279289

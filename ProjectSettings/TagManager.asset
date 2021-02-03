@@ -13,6 +13,7 @@ TagManager:
   - title
   - retry
   - exit
+  - fullHPItem
   layers:
   - Default
   - TransparentFX

@@ -65,7 +65,16 @@ public class ObjDestroy : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if(gameObject.tag == "JumpItem")
+        if (gameObject.tag == "fullHPItem")
+        {
+            GameObject heal = Instantiate(healEffect, transform.position, Quaternion.identity);
+            heal.transform.position = new Vector3(heal.transform.position.x, heal.transform.position.y, heal.transform.position.z + 2f);
+            Destroy(heal, 1.0f);
+            AudioSource.PlayClipAtPoint(objSe, transform.position);
+            Destroy(gameObject);
+        }
+
+        if (gameObject.tag == "JumpItem")
         {
             AudioSource.PlayClipAtPoint(objSe, transform.position);
             Destroy(gameObject);
