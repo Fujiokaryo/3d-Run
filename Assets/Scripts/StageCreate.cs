@@ -34,6 +34,9 @@ public class StageCreate : MonoBehaviour
     [SerializeField]
     private GameMaster gameMaster;
 
+    [SerializeField]
+    private List<GameObject> laneObjs =  new List<GameObject>();
+
     private int gameLevel;
     private int border = 1000;
     private float playTime;
@@ -95,11 +98,13 @@ public class StageCreate : MonoBehaviour
             {
                 wallPer = 65;
             }
+            laneObjs.Clear();
             CreateObj1();
             CreateObj2();
             CreateObj3();
             CreateObj4();
-            Debug.Log(objSpan);
+            CheckWall();
+            //Debug.Log(objSpan);
         }
     }
 
@@ -133,24 +138,30 @@ public class StageCreate : MonoBehaviour
     {
         int randomValue = Random.Range(0, 100);
         int randomItemValue = Random.Range(0, 100);
+        GameObject obj = null;
         if(randomValue < wallPer)
         {
-           Instantiate(ObjPrefabs[0], new Vector3(-2.2f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+          obj = Instantiate(ObjPrefabs[0], new Vector3(-2.2f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
         }
         else if(wallPer <= randomValue && randomValue < wallPer + itemPer)
         {
             if(randomItemValue < hpItemPer)
             {
-                Instantiate(ObjPrefabs[1], new Vector3(-2.2f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+               obj = Instantiate(ObjPrefabs[1], new Vector3(-2.2f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
             }
             else if(hpItemPer <= randomItemValue && randomItemValue <hpItemPer + scoreItemPer)
             {
-                Instantiate(ObjPrefabs[3], new Vector3(-2.2f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                obj = Instantiate(ObjPrefabs[3], new Vector3(-2.2f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
             }
             else if(hpItemPer + scoreItemPer <= randomItemValue &&  randomItemValue <= hpItemPer + scoreItemPer + jumpItemPer)
             {
-                Instantiate(ObjPrefabs[2], new Vector3(-2.2f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                obj = Instantiate(ObjPrefabs[2], new Vector3(-2.2f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
             }
+        }
+
+        if(obj != null)
+        {
+            laneObjs.Add(obj);
         }
        
         playTime = 0;
@@ -163,26 +174,31 @@ public class StageCreate : MonoBehaviour
     {
         int randomValue = Random.Range(0, 100);
         int randomItemValue = Random.Range(0, 100);
+        GameObject obj = null;
         if (randomValue < wallPer)
         {
-            Instantiate(ObjPrefabs[0], new Vector3(-0.6f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+           obj = Instantiate(ObjPrefabs[0], new Vector3(-0.6f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
         }
         else if (wallPer <= randomValue && randomValue < wallPer + itemPer)
         {
             if (randomItemValue < hpItemPer)
             {
-                Instantiate(ObjPrefabs[1], new Vector3(-0.6f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                obj = Instantiate(ObjPrefabs[1], new Vector3(-0.6f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
             }
             else if (hpItemPer <= randomItemValue && randomItemValue < hpItemPer + scoreItemPer)
             {
-                Instantiate(ObjPrefabs[3], new Vector3(-0.6f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                obj = Instantiate(ObjPrefabs[3], new Vector3(-0.6f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
             }
             else if (hpItemPer + scoreItemPer <= randomItemValue && randomItemValue <= hpItemPer + scoreItemPer + jumpItemPer)
             {
-                Instantiate(ObjPrefabs[2], new Vector3(-0.6f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                obj = Instantiate(ObjPrefabs[2], new Vector3(-0.6f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
             }
         }
 
+        if(obj != null)
+        {
+            laneObjs.Add(obj);
+        }
         playTime = 0;
     }
 
@@ -193,26 +209,31 @@ public class StageCreate : MonoBehaviour
     {
         int randomValue = Random.Range(0, 100);
         int randomItemValue = Random.Range(0, 100);
+        GameObject obj = null;
         if (randomValue < wallPer)
         {
-            Instantiate(ObjPrefabs[0], new Vector3(1f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+           obj = Instantiate(ObjPrefabs[0], new Vector3(1f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
         }
         else if (wallPer <= randomValue && randomValue < wallPer + itemPer)
         {
             if (randomItemValue < hpItemPer)
             {
-                Instantiate(ObjPrefabs[1], new Vector3(1f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                obj = Instantiate(ObjPrefabs[1], new Vector3(1f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
             }
             else if (hpItemPer <= randomItemValue && randomItemValue < hpItemPer + scoreItemPer)
             {
-                Instantiate(ObjPrefabs[3], new Vector3(1f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                obj = Instantiate(ObjPrefabs[3], new Vector3(1f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
             }
             else if (hpItemPer + scoreItemPer <= randomItemValue && randomItemValue <= hpItemPer + scoreItemPer + jumpItemPer)
             {
-                Instantiate(ObjPrefabs[2], new Vector3(1f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                obj = Instantiate(ObjPrefabs[2], new Vector3(1f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
             }
         }
 
+        if(obj != null)
+        {
+            laneObjs.Add(obj);
+        }
         playTime = 0;
     }
 
@@ -223,26 +244,73 @@ public class StageCreate : MonoBehaviour
     {
         int randomValue = Random.Range(0, 100);
         int randomItemValue = Random.Range(0, 100);
+        GameObject obj = null;
         if (randomValue < wallPer)
         {
-            Instantiate(ObjPrefabs[0], new Vector3(2.6f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+           obj = Instantiate(ObjPrefabs[0], new Vector3(2.6f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
         }
         else if (wallPer <= randomValue && randomValue < wallPer + itemPer)
         {
             if (randomItemValue < hpItemPer)
             {
-                Instantiate(ObjPrefabs[1], new Vector3(2.6f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                obj = Instantiate(ObjPrefabs[1], new Vector3(2.6f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
             }
             else if (hpItemPer <= randomItemValue && randomItemValue < hpItemPer + scoreItemPer)
             {
-                Instantiate(ObjPrefabs[3], new Vector3(2.6f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                obj = Instantiate(ObjPrefabs[3], new Vector3(2.6f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
             }
             else if (hpItemPer + scoreItemPer <= randomItemValue && randomItemValue <= hpItemPer + scoreItemPer + jumpItemPer)
             {
-                Instantiate(ObjPrefabs[2], new Vector3(2.6f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                obj = Instantiate(ObjPrefabs[2], new Vector3(2.6f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
             }
         }
 
+        if(obj != null)
+        {
+            laneObjs.Add(obj);
+        }
         playTime = 0;
+    }
+
+    private void CheckWall()
+    {
+        //リストの中身が4個か確認 
+        if (laneObjs.Count == 4)
+        {
+            //4個の場合にwallかどうかを1個ずつ確認＋全部wallの場合はランダムでどれかの壁をアイテムに変える
+            for (int i = 0;i < laneObjs.Count; i++)
+            {
+                if(laneObjs[i].tag != "wall")
+                {
+                    break;
+                }
+
+            }
+            Debug.Log("全部壁");
+           //ランダムで壁を一つ選んで消す
+           int value = Random.Range(0, laneObjs.Count);
+            Destroy(laneObjs[value]);
+            laneObjs.Remove(laneObjs[value]);
+
+           int randomItemValue = Random.Range(0, 100);
+            GameObject obj = null;
+            if (randomItemValue < hpItemPer)
+            {
+                obj = Instantiate(ObjPrefabs[1], new Vector3(-2.2f + 1.6f * value, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+            }
+            else if (hpItemPer <= randomItemValue && randomItemValue < hpItemPer + scoreItemPer)
+            {
+                obj = Instantiate(ObjPrefabs[3], new Vector3(-2.2f + 1.6f * value, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+            }
+            else if (hpItemPer + scoreItemPer <= randomItemValue && randomItemValue <= hpItemPer + scoreItemPer + jumpItemPer)
+            {
+                obj = Instantiate(ObjPrefabs[2], new Vector3(-2.2f + 1.6f * value, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+            }
+
+            laneObjs.Insert(value, obj);
+        }
+
+
+
     }
 }
