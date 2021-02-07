@@ -37,72 +37,85 @@ public class StageCreate : MonoBehaviour
     [SerializeField]
     private List<GameObject> laneObjs =  new List<GameObject>();
 
-    private int gameLevel;
+    
     private int border = 1000;
+    private int laneNum;
     private float playTime;
     private float objSpan;
-    private bool isStart;
+    private PlayerController playerController;
+
+    private const int maxLane = 4;
+    private const int addBorder = 2000;
+    private const float laneWidth = 1.6f;
+    private const float initialWidth = -2.2f;
 
 
     void Start()
     {
-        
+        playerController = GameObject.Find("unitychan").GetComponent<PlayerController>();
+        CheckGameLevel(gameMaster.gameLevel);
     }
 
+    public void CheckGameLevel(int gameLevel)
+    {
+        if (gameMaster.gameLevel <= 2)
+        {
+            objSpan = 1.2f;
+        }
+        else if (2 < gameMaster.gameLevel && gameMaster.gameLevel <= 4)
+        {
+            objSpan = 1f;
+        }
+        else if (4 < gameMaster.gameLevel && gameMaster.gameLevel <= 6)
+        {
+            objSpan = 0.8f;
+        }
+        else if (6 < gameMaster.gameLevel && gameMaster.gameLevel <= 8)
+        {
+            objSpan = 0.6f;
+        }
+        else if (gameMaster.gameLevel > 8)
+        {
+            objSpan = 0.4f;
+        }
+
+        if (4 <= gameMaster.gameLevel && gameMaster.gameLevel <= 7)
+        {
+            wallPer = 60;
+        }
+        if (gameMaster.gameLevel > 7)
+        {
+            wallPer = 65;
+        }
+    }
     // Update is called once per frame
     void Update()
     {
-        isStart = GameObject.Find("unitychan").GetComponent<PlayerController>().isStart;
-        if (isStart == false)
+       
+        if (playerController.isStart == false)
         {
             return;
         }
 
         playTime += Time.deltaTime;
-        gameLevel = gameMaster.gameLevel;
+       
 
         if (transform.position.z > border)
         {
             CreateMap();
         }
 
-        if(gameLevel <= 2)
-        {
-            objSpan = 1.2f;
-        }
-        else if(2 < gameLevel && gameLevel <= 4)
-        {
-            objSpan = 1f;
-        }
-        else if(4 < gameLevel && gameLevel <= 6)
-        {
-            objSpan = 0.8f;
-        }
-        else if(6 < gameLevel && gameLevel <= 8)
-        {
-            objSpan = 0.6f;
-        }
-        else if (gameLevel > 8)
-        {
-            objSpan = 0.4f;
-        }
+        
 
 
         if (playTime > objSpan)
         {   
-            if(4 <= gameLevel && gameLevel <=7)
-            {
-                wallPer = 60;
-            }
-            if(gameLevel > 7)
-            {
-                wallPer = 65;
-            }
+            
             laneObjs.Clear();
-            CreateObj1();
-            CreateObj2();
-            CreateObj3();
-            CreateObj4();
+
+            PreparateCreateObjs();
+            
+        
             CheckWall();
             //Debug.Log(objSpan);
         }
@@ -115,7 +128,7 @@ public class StageCreate : MonoBehaviour
     {
         if(Stage1.transform.position.z < border)
         {
-            border += 2000;
+            border += addBorder;
 
             Vector3 temp = new Vector3(0, 0.05f, border);
 
@@ -123,7 +136,7 @@ public class StageCreate : MonoBehaviour
         }
         else if(Stage2.transform.position.z < border)
         {
-            border += 2000;
+            border += addBorder;
 
             Vector3 temp = new Vector3(0, 0.05f, border);
 
@@ -131,32 +144,49 @@ public class StageCreate : MonoBehaviour
         }
     }
 
+    private void PreparateCreateObjs()
+    {
+        for (int i = 0; i < maxLane; i++)
+        {
+            CreateObj(i);
+        }
+
+        playTime = 0;
+    }
+
     /// <summary>
-    /// 1レーン目のオブジェクト自動生成
+    /// レーンのオブジェクト自動生成
     /// </summary>
-    void CreateObj1()
+    void CreateObj(int laneNum)
     {
         int randomValue = Random.Range(0, 100);
         int randomItemValue = Random.Range(0, 100);
+        GameObject prefab = null;
         GameObject obj = null;
+
         if(randomValue < wallPer)
         {
-          obj = Instantiate(ObjPrefabs[0], new Vector3(-2.2f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+            prefab = ObjPrefabs[0];
         }
         else if(wallPer <= randomValue && randomValue < wallPer + itemPer)
         {
             if(randomItemValue < hpItemPer)
             {
-               obj = Instantiate(ObjPrefabs[1], new Vector3(-2.2f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                prefab = ObjPrefabs[1];
             }
             else if(hpItemPer <= randomItemValue && randomItemValue <hpItemPer + scoreItemPer)
             {
-                obj = Instantiate(ObjPrefabs[3], new Vector3(-2.2f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                prefab = ObjPrefabs[3];
             }
             else if(hpItemPer + scoreItemPer <= randomItemValue &&  randomItemValue <= hpItemPer + scoreItemPer + jumpItemPer)
             {
-                obj = Instantiate(ObjPrefabs[2], new Vector3(-2.2f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                prefab = ObjPrefabs[2];
             }
+        }
+
+        if(prefab != null)
+        {
+            obj = Instantiate(prefab, new Vector3(initialWidth + (laneNum * laneWidth), 0.5f, player.transform.position.z + 80f), Quaternion.identity);
         }
 
         if(obj != null)
@@ -164,113 +194,10 @@ public class StageCreate : MonoBehaviour
             laneObjs.Add(obj);
         }
        
-        playTime = 0;
+       
     }
 
-    /// <summary>
-    /// 2レーン目のオブジェクト自動生成
-    /// </summary>
-    void CreateObj2()
-    {
-        int randomValue = Random.Range(0, 100);
-        int randomItemValue = Random.Range(0, 100);
-        GameObject obj = null;
-        if (randomValue < wallPer)
-        {
-           obj = Instantiate(ObjPrefabs[0], new Vector3(-0.6f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
-        }
-        else if (wallPer <= randomValue && randomValue < wallPer + itemPer)
-        {
-            if (randomItemValue < hpItemPer)
-            {
-                obj = Instantiate(ObjPrefabs[1], new Vector3(-0.6f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
-            }
-            else if (hpItemPer <= randomItemValue && randomItemValue < hpItemPer + scoreItemPer)
-            {
-                obj = Instantiate(ObjPrefabs[3], new Vector3(-0.6f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
-            }
-            else if (hpItemPer + scoreItemPer <= randomItemValue && randomItemValue <= hpItemPer + scoreItemPer + jumpItemPer)
-            {
-                obj = Instantiate(ObjPrefabs[2], new Vector3(-0.6f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
-            }
-        }
-
-        if(obj != null)
-        {
-            laneObjs.Add(obj);
-        }
-        playTime = 0;
-    }
-
-    /// <summary>
-    /// 3レーン目のオブジェクト自動生成
-    /// </summary>
-    void CreateObj3()
-    {
-        int randomValue = Random.Range(0, 100);
-        int randomItemValue = Random.Range(0, 100);
-        GameObject obj = null;
-        if (randomValue < wallPer)
-        {
-           obj = Instantiate(ObjPrefabs[0], new Vector3(1f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
-        }
-        else if (wallPer <= randomValue && randomValue < wallPer + itemPer)
-        {
-            if (randomItemValue < hpItemPer)
-            {
-                obj = Instantiate(ObjPrefabs[1], new Vector3(1f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
-            }
-            else if (hpItemPer <= randomItemValue && randomItemValue < hpItemPer + scoreItemPer)
-            {
-                obj = Instantiate(ObjPrefabs[3], new Vector3(1f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
-            }
-            else if (hpItemPer + scoreItemPer <= randomItemValue && randomItemValue <= hpItemPer + scoreItemPer + jumpItemPer)
-            {
-                obj = Instantiate(ObjPrefabs[2], new Vector3(1f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
-            }
-        }
-
-        if(obj != null)
-        {
-            laneObjs.Add(obj);
-        }
-        playTime = 0;
-    }
-
-    /// <summary>
-    /// 4レーン目のオブジェクト自動生成
-    /// </summary>
-    void CreateObj4()
-    {
-        int randomValue = Random.Range(0, 100);
-        int randomItemValue = Random.Range(0, 100);
-        GameObject obj = null;
-        if (randomValue < wallPer)
-        {
-           obj = Instantiate(ObjPrefabs[0], new Vector3(2.6f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
-        }
-        else if (wallPer <= randomValue && randomValue < wallPer + itemPer)
-        {
-            if (randomItemValue < hpItemPer)
-            {
-                obj = Instantiate(ObjPrefabs[1], new Vector3(2.6f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
-            }
-            else if (hpItemPer <= randomItemValue && randomItemValue < hpItemPer + scoreItemPer)
-            {
-                obj = Instantiate(ObjPrefabs[3], new Vector3(2.6f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
-            }
-            else if (hpItemPer + scoreItemPer <= randomItemValue && randomItemValue <= hpItemPer + scoreItemPer + jumpItemPer)
-            {
-                obj = Instantiate(ObjPrefabs[2], new Vector3(2.6f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
-            }
-        }
-
-        if(obj != null)
-        {
-            laneObjs.Add(obj);
-        }
-        playTime = 0;
-    }
+   
 
     private void CheckWall()
     {
@@ -286,7 +213,7 @@ public class StageCreate : MonoBehaviour
                 }
 
             }
-            Debug.Log("全部壁");
+            
            //ランダムで壁を一つ選んで消す
            int value = Random.Range(0, laneObjs.Count);
             Destroy(laneObjs[value]);

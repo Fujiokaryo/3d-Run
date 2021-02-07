@@ -64,6 +64,7 @@ public class GameMaster : MonoBehaviour
     private float keepPlayTimeSep = 3;
     private PlayerController playerController;
     private RightplayerCon rightplayerCon;
+    private StageCreate stageCreate;
 
 
     private void Awake()
@@ -74,6 +75,7 @@ public class GameMaster : MonoBehaviour
     {
         playerController = GameObject.Find("unitychan").GetComponent<PlayerController>();
         rightplayerCon = GameObject.Find("unitychan").GetComponent<RightplayerCon>();
+        stageCreate = GetComponent<StageCreate>();
     }
 
     // Update is called once per frame
@@ -99,6 +101,10 @@ public class GameMaster : MonoBehaviour
         {
             gameLevel++;
             levelText.text = gameLevel.ToString();
+            if(GameData.instance.currentPlayType == PlayType.SoloPlay)
+            {
+                stageCreate.CheckGameLevel(gameLevel);
+            }
             levelUp += 20;
         }
 
