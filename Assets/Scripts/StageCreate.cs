@@ -47,7 +47,7 @@ public class StageCreate : MonoBehaviour
     private const int maxLane = 4;
     private const int addBorder = 2000;
     private const float laneWidth = 1.6f;
-    private const float initialWidth = -2.2f;
+    private const float initialWidth = -2.3f;
 
 
     void Start()
@@ -115,7 +115,6 @@ public class StageCreate : MonoBehaviour
 
             PreparateCreateObjs();
             
-        
             CheckWall();
             //Debug.Log(objSpan);
         }
@@ -186,7 +185,7 @@ public class StageCreate : MonoBehaviour
 
         if(prefab != null)
         {
-            obj = Instantiate(prefab, new Vector3(initialWidth + (laneNum * laneWidth), 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+            obj = Instantiate(prefab, new Vector3(initialWidth + (laneNum * laneWidth), 0.6f, player.transform.position.z + 80f), Quaternion.identity);
         }
 
         if(obj != null)
@@ -223,15 +222,15 @@ public class StageCreate : MonoBehaviour
             GameObject obj = null;
             if (randomItemValue < hpItemPer)
             {
-                obj = Instantiate(ObjPrefabs[1], new Vector3(-2.2f + 1.6f * value, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                obj = Instantiate(ObjPrefabs[1], new Vector3(-2.3f + laneWidth * value, 0.6f, player.transform.position.z + 80f), Quaternion.identity);
             }
             else if (hpItemPer <= randomItemValue && randomItemValue < hpItemPer + scoreItemPer)
             {
-                obj = Instantiate(ObjPrefabs[3], new Vector3(-2.2f + 1.6f * value, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                obj = Instantiate(ObjPrefabs[3], new Vector3(-2.3f + laneWidth * value, 0.6f, player.transform.position.z + 80f), Quaternion.identity);
             }
             else if (hpItemPer + scoreItemPer <= randomItemValue && randomItemValue <= hpItemPer + scoreItemPer + jumpItemPer)
             {
-                obj = Instantiate(ObjPrefabs[2], new Vector3(-2.2f + 1.6f * value, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                obj = Instantiate(ObjPrefabs[2], new Vector3(-2.3f + laneWidth * value, 0.6f, player.transform.position.z + 80f), Quaternion.identity);
             }
 
             laneObjs.Insert(value, obj);

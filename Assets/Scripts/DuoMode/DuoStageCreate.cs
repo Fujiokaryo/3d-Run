@@ -128,40 +128,40 @@ public class DuoStageCreate : MonoBehaviour
         int randomItemValue = Random.Range(0, 100);
         if (randomValue < 50)
         {
-            Instantiate(ObjPrefabs[0], new Vector3(-2.2f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+            Instantiate(ObjPrefabs[0], new Vector3(-2.5f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
             if (randomValue < 20)
             {
                 if (randomItemValue < hpItemPer)
                 {
-                    Instantiate(ObjPrefabs[1], new Vector3(-0.5f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                    Instantiate(ObjPrefabs[1], new Vector3(-0.9f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
                 }
                 else if (hpItemPer <= randomItemValue && randomItemValue < hpItemPer + scoreItemPer)
                 {
-                    Instantiate(ObjPrefabs[3], new Vector3(-0.5f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                    Instantiate(ObjPrefabs[3], new Vector3(-0.9f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
                 }
                 else if (hpItemPer + scoreItemPer <= randomItemValue && randomItemValue <= hpItemPer + scoreItemPer + jumpItemPer)
                 {
-                    Instantiate(ObjPrefabs[2], new Vector3(-0.5f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                    Instantiate(ObjPrefabs[2], new Vector3(-0.9f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
                 }
             }
 
         }
         else if (50 <= randomValue)
         {
-            Instantiate(ObjPrefabs[0], new Vector3(-0.5f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+            Instantiate(ObjPrefabs[0], new Vector3(-0.9f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
             if (80 <= randomValue)
             {
                 if (randomItemValue < hpItemPer)
                 {
-                    Instantiate(ObjPrefabs[1], new Vector3(-2.2f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                    Instantiate(ObjPrefabs[1], new Vector3(-2.5f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
                 }
                 else if (hpItemPer <= randomItemValue && randomItemValue < hpItemPer + scoreItemPer)
                 {
-                    Instantiate(ObjPrefabs[3], new Vector3(-2.2f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                    Instantiate(ObjPrefabs[3], new Vector3(-2.5f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
                 }
                 else if (hpItemPer + scoreItemPer <= randomItemValue && randomItemValue <= hpItemPer + scoreItemPer + jumpItemPer)
                 {
-                    Instantiate(ObjPrefabs[2], new Vector3(-2.2f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                    Instantiate(ObjPrefabs[2], new Vector3(-2.5f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
                 }
             }
         }
@@ -177,39 +177,39 @@ public class DuoStageCreate : MonoBehaviour
         int randomItemValue = Random.Range(0, 100);
         if (randomValue < 50)
         {
-            Instantiate(ObjPrefabs[0], new Vector3(1.1f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+            Instantiate(ObjPrefabs[0], new Vector3(0.9f, 0.6f, player.transform.position.z + 80f), Quaternion.identity);
             if (randomValue < 20)
             {
                 if (randomItemValue < hpItemPer)
                 {
-                    Instantiate(ObjPrefabs[1], new Vector3(2.7f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                    Instantiate(ObjPrefabs[1], new Vector3(2.5f, 0.6f, player.transform.position.z + 80f), Quaternion.identity);
                 }
                 else if (hpItemPer <= randomItemValue && randomItemValue < hpItemPer + scoreItemPer)
                 {
-                    Instantiate(ObjPrefabs[3], new Vector3(2.7f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                    Instantiate(ObjPrefabs[3], new Vector3(2.5f, 0.6f, player.transform.position.z + 80f), Quaternion.identity);
                 }
                 else if (hpItemPer + scoreItemPer <= randomItemValue && randomItemValue <= hpItemPer + scoreItemPer + jumpItemPer)
                 {
-                    Instantiate(ObjPrefabs[2], new Vector3(2.7f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                    Instantiate(ObjPrefabs[2], new Vector3(2.5f, 0.6f, player.transform.position.z + 80f), Quaternion.identity);
                 }
             }
         }
         else if(50 <= randomValue)
         {
-            Instantiate(ObjPrefabs[0], new Vector3(2.7f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+            Instantiate(ObjPrefabs[0], new Vector3(2.5f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
             if (80 <= randomValue)
             {
                 if (randomItemValue < hpItemPer)
                 {
-                    Instantiate(ObjPrefabs[1], new Vector3(1.1f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                    Instantiate(ObjPrefabs[1], new Vector3(0.9f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
                 }
                 else if (hpItemPer <= randomItemValue && randomItemValue < hpItemPer + scoreItemPer)
                 {
-                    Instantiate(ObjPrefabs[3], new Vector3(1.1f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                    Instantiate(ObjPrefabs[3], new Vector3(0.9f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
                 }
                 else if (hpItemPer + scoreItemPer <= randomItemValue && randomItemValue <= hpItemPer + scoreItemPer + jumpItemPer)
                 {
-                    Instantiate(ObjPrefabs[2], new Vector3(1.1f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+                    Instantiate(ObjPrefabs[2], new Vector3(0.9f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
                 }
             }
         }

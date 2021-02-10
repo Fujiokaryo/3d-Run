@@ -177,6 +177,8 @@ public class PlayerController : MonoBehaviour
         else if (transform.position.x >= 0.5f && transform.position.x <= 1.5f )
         {
             transform.Translate(1.6f, 0, 0);
+            float limitX = Mathf.Clamp(transform.position.x, -2.5f, 2.5f);
+            transform.position = new Vector3(limitX, transform.position.y, transform.position.z);
         }
 
     }
@@ -197,6 +199,8 @@ public class PlayerController : MonoBehaviour
         else if (transform.position.x >= -1f && transform.position.x <= 0)
         {
             transform.Translate(-1.6f, 0, 0);
+            float limitX = Mathf.Clamp(transform.position.x, -2.5f, 2.5f);
+            transform.position = new Vector3(limitX, transform.position.y, transform.position.z);
         }
         
     }

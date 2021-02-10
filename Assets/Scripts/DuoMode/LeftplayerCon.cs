@@ -68,13 +68,13 @@ public class LeftplayerCon : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             transform.Translate(-1.6f, 0, 0);
-            float limitX = Mathf.Clamp(transform.position.x, -2.1f, -0.5f);
+            float limitX = Mathf.Clamp(transform.position.x, -2.5f, -0.9f);
             transform.position = new Vector3(limitX, transform.position.y, transform.position.z);
         }
         else if(Input.GetKeyUp(KeyCode.A))
         {
             transform.Translate(1.6f, 0, 0);
-            float limitX = Mathf.Clamp(transform.position.x, -2.1f, -0.5f);
+            float limitX = Mathf.Clamp(transform.position.x, -2.5f, -0.9f);
             transform.position = new Vector3(limitX, transform.position.y, transform.position.z);
         }
     }

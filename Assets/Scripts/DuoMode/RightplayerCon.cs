@@ -78,13 +78,13 @@ public class RightplayerCon : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             transform.Translate(1.6f, 0, 0);
-            float limitX = Mathf.Clamp(transform.position.x, 1.1f, 2.7f);
+            float limitX = Mathf.Clamp(transform.position.x, 0.9f, 2.5f);
             transform.position = new Vector3(limitX, transform.position.y, transform.position.z);
         }
         else if (Input.GetKeyUp(KeyCode.D))
         {
             transform.Translate(-1.6f, 0, 0);
-            float limitX = Mathf.Clamp(transform.position.x, 1.1f, 2.7f);
+            float limitX = Mathf.Clamp(transform.position.x, 0.9f, 2.5f);
             transform.position = new Vector3(limitX, transform.position.y, transform.position.z);
         }
 
