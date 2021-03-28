@@ -23,13 +23,20 @@ public class StageCreate : MonoBehaviour
     private int itemPer;
 
     [SerializeField]
+    private int hpItemPer;
+
+    [SerializeField]
+    private int scoreItemPer;
+
+    [SerializeField]
+    private int jumpItemPer;
+
+    [SerializeField]
     private GameMaster gameMaster;
 
     [SerializeField]
     private List<GameObject> laneObjs =  new List<GameObject>();
 
-    [SerializeField]
-    public ItemDataSO itemDataSO;
 
     private int border = 1000;
     private int laneNum;
@@ -51,35 +58,45 @@ public class StageCreate : MonoBehaviour
 
     public void CheckGameLevel(int gameLevel)
     {
-        if (gameMaster.gameLevel <= 2)
+        if (gameLevel <= 2)
         {
             objSpan = 1.2f;
         }
-        else if (2 < gameMaster.gameLevel && gameMaster.gameLevel <= 4)
+        else if (2 < gameLevel && gameLevel <= 4)
         {
             objSpan = 1f;
         }
-        else if (4 < gameMaster.gameLevel && gameMaster.gameLevel <= 6)
+        else if (4 < gameLevel && gameLevel <= 6)
         {
             objSpan = 0.8f;
         }
-        else if (6 < gameMaster.gameLevel && gameMaster.gameLevel <= 8)
+        else if (6 < gameLevel && gameLevel <= 8)
         {
             objSpan = 0.6f;
         }
-        else if (gameMaster.gameLevel > 8)
+        else if (gameLevel > 8)
         {
             objSpan = 0.4f;
         }
 
-        if (4 <= gameMaster.gameLevel && gameMaster.gameLevel <= 7)
+        if(gameLevel < 4)
+        {
+            wallPer = 50;
+            itemPer = 30;
+        }
+
+        if (4 <= gameLevel && gameLevel <= 7)
         {
             wallPer = 60;
+            itemPer = 15;
         }
-        if (gameMaster.gameLevel > 7)
+        if (gameLevel > 7)
         {
             wallPer = 65;
+            itemPer = 10;
         }
+
+
     }
     // Update is called once per frame
     void Update()
@@ -168,13 +185,16 @@ public class StageCreate : MonoBehaviour
         {
             obj = Instantiate(prefab, new Vector3(initialWidth + (laneNum * laneWidth), 0.6f, player.transform.position.z + 80f), Quaternion.identity);
 
-            Debug.Log("オブジェクト生成");
+            //Debug.Log("オブジェクト生成");
 
-            SetUpItem setUpItem = obj.GetComponent<SetUpItem>();
-            Debug.Log("コンポーネント取得");
+            if (wallPer <= randomValue && randomValue < wallPer + itemPer)
+            {
+                SetUpItem setUpItem = obj.GetComponent<SetUpItem>();
+                //Debug.Log("コンポーネント取得");
 
+                setUpItem.ItemSetUp(SelectItemType(randomItemValue));
+            }
 
-            setUpItem.ItemTypeSetUp(randomItemValue);
         }
        
 
@@ -215,25 +235,36 @@ public class StageCreate : MonoBehaviour
 
             SetUpItem setUpItem = obj.GetComponent<SetUpItem>();
 
-            setUpItem.ItemTypeSetUp(randomItemValue);
-
-            //if (randomItemValue < hpItemPer)
-            //{
-            //    obj = Instantiate(ObjPrefabs[1], new Vector3(-2.3f + laneWidth * value, 0.6f, player.transform.position.z + 80f), Quaternion.identity);
-            //}
-            // else if (hpItemPer <= randomItemValue && randomItemValue < hpItemPer + scoreItemPer)
-            //{
-            //    obj = Instantiate(ObjPrefabs[3], new Vector3(-2.3f + laneWidth * value, 0.6f, player.transform.position.z + 80f), Quaternion.identity);
-            //}
-            //else if (hpItemPer + scoreItemPer <= randomItemValue && randomItemValue <= hpItemPer + scoreItemPer + jumpItemPer)
-            //{
-            //    obj = Instantiate(ObjPrefabs[2], new Vector3(-2.3f + laneWidth * value, 0.6f, player.transform.position.z + 80f), Quaternion.identity);
-            //}
+            setUpItem.ItemSetUp(SelectItemType(randomItemValue));
 
             laneObjs.Insert(value, obj);
         }
 
+        
 
+    }
 
+    ItemDataSO.ItemType SelectItemType(int randomItemValue)
+    {
+
+        if (randomItemValue < hpItemPer)
+        {
+
+            return ItemDataSO.ItemType.HP;
+
+        }
+        else if (hpItemPer <= randomItemValue && randomItemValue < hpItemPer + scoreItemPer)
+        {
+
+            return ItemDataSO.ItemType.Score;
+
+        }
+        else if (hpItemPer + scoreItemPer <= randomItemValue && randomItemValue <= hpItemPer + scoreItemPer + jumpItemPer)
+        {
+
+            return ItemDataSO.ItemType.Jump;
+        }
+
+        return ItemDataSO.ItemType.None;
     }
 }

@@ -14,35 +14,35 @@ public class SetUpItem : MonoBehaviour
     private int jumpItemPer;
 
     public ItemDataSO.ItemType itemType;
-    public void ItemTypeSetUp(int randomItemValue)
+    public void ItemSetUp(ItemDataSO.ItemType itemType)
     {
-        if(gameObject.tag == "Wall")
-        {
-            return;
-        }
+     
 
-        if (randomItemValue < hpItemPer)
+        if(itemType == ItemDataSO.ItemType.HP)
         {
-            
-            itemType = ItemDataSO.ItemType.HP;
+
             gameObject.tag = "HPItem";
             gameObject.GetComponent<Renderer>().material.color = Color.magenta;
 
         }
-        else if (hpItemPer <= randomItemValue && randomItemValue < hpItemPer + scoreItemPer)
+        else if(itemType == ItemDataSO.ItemType.Score)
         {
             
-            itemType = ItemDataSO.ItemType.Score;
             gameObject.tag = "ScoreItem";
             gameObject.GetComponent<Renderer>().material.color = Color.yellow;
 
         }
-        else if (hpItemPer + scoreItemPer <= randomItemValue && randomItemValue <= hpItemPer + scoreItemPer + jumpItemPer)
+        else if(itemType == ItemDataSO.ItemType.Jump)
         {
             
-            itemType = ItemDataSO.ItemType.Jump;
             gameObject.tag = "JumpItem";
             gameObject.GetComponent<Renderer>().material.color = Color.green;
+        }
+        else if(itemType == ItemDataSO.ItemType.fullHP)
+        {
+
+            gameObject.tag = "fullHPItem";
+            gameObject.GetComponent<Renderer>().material.color = Color.red;
         }
     }
 

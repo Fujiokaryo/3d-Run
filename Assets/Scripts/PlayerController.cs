@@ -98,7 +98,7 @@ public class PlayerController : MonoBehaviour
     void Right()
     {
 
-        if (transform.position.x >= -2.5f && transform.position.x <= 2f)
+        if (transform.position.x >= -2.5f && transform.position.x <= -2f)
         {
             transform.Translate(1.6f, 0, 0);
         }
@@ -120,7 +120,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     void Left()
     {
-        if (transform.position.x >= 2.5f && transform.position.x <= 3)
+        if (transform.position.x >= 2f && transform.position.x <= 3)
         {
             transform.Translate(-1.6f, 0, 0);
         }

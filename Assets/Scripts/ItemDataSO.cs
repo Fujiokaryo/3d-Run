@@ -21,7 +21,8 @@ public class ItemDataSO : ScriptableObject
         fullHP,
         Score,
         Jump,
-        Wall
+        Wall,
+        None
     }
 
     

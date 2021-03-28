@@ -254,7 +254,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 95, y: -27}
+  m_AnchoredPosition: {x: 21, y: -27}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &112485489
@@ -1685,7 +1685,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &837121923
 Transform:
   m_ObjectHideFlags: 0
@@ -2626,7 +2626,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 00
+  m_Text: '1
+
+'
 --- !u!222 &1263104939
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3002,13 +3004,13 @@ MonoBehaviour:
   ObjPrefabs:
   - {fileID: 9047151753645292429, guid: 84cf481b5d6284348aef68e8437c9146, type: 3}
   - {fileID: 5071972745358081914, guid: 32dc5336d9b92cb46a2ea2269a42c3ef, type: 3}
-  wallPer: 50
-  itemPer: 30
-  setUpItem: {fileID: 3969806147395444720, guid: 32dc5336d9b92cb46a2ea2269a42c3ef,
-    type: 3}
+  wallPer: 0
+  itemPer: 0
+  hpItemPer: 30
+  scoreItemPer: 60
+  jumpItemPer: 10
   gameMaster: {fileID: 1467841761}
   laneObjs: []
-  itemDataSO: {fileID: 11400000, guid: 77d28021beda3b241bde0653eed1d47f, type: 2}
 --- !u!114 &1467841764
 MonoBehaviour:
   m_ObjectHideFlags: 0

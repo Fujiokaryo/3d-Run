@@ -29,7 +29,7 @@ public class DuoStageCreate : MonoBehaviour
     private int scoreItemPer;
 
     [SerializeField]
-    private int jumpItemPer;
+    private int fullHPItemPer;
 
     [SerializeField]
     private GameMaster gameMaster;
@@ -109,18 +109,13 @@ public class DuoStageCreate : MonoBehaviour
             Instantiate(ObjPrefabs[0], new Vector3(-2.5f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
             if (randomValue < 20)
             {
-                if (randomItemValue < hpItemPer)
-                {
-                    Instantiate(ObjPrefabs[1], new Vector3(-0.9f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
-                }
-                else if (hpItemPer <= randomItemValue && randomItemValue < hpItemPer + scoreItemPer)
-                {
-                    Instantiate(ObjPrefabs[3], new Vector3(-0.9f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
-                }
-                else if (hpItemPer + scoreItemPer <= randomItemValue && randomItemValue <= hpItemPer + scoreItemPer + jumpItemPer)
-                {
-                    Instantiate(ObjPrefabs[2], new Vector3(-0.9f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
-                }
+                
+              GameObject obj = Instantiate(ObjPrefabs[1], new Vector3(-0.9f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+
+              SetUpItem setUpItem = obj.GetComponent<SetUpItem>();
+
+              setUpItem.ItemSetUp(SelectItemType(randomItemValue));
+               
             }
 
         }
@@ -129,18 +124,11 @@ public class DuoStageCreate : MonoBehaviour
             Instantiate(ObjPrefabs[0], new Vector3(-0.9f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
             if (80 <= randomValue)
             {
-                if (randomItemValue < hpItemPer)
-                {
-                    Instantiate(ObjPrefabs[1], new Vector3(-2.5f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
-                }
-                else if (hpItemPer <= randomItemValue && randomItemValue < hpItemPer + scoreItemPer)
-                {
-                    Instantiate(ObjPrefabs[3], new Vector3(-2.5f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
-                }
-                else if (hpItemPer + scoreItemPer <= randomItemValue && randomItemValue <= hpItemPer + scoreItemPer + jumpItemPer)
-                {
-                    Instantiate(ObjPrefabs[2], new Vector3(-2.5f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
-                }
+                GameObject obj = Instantiate(ObjPrefabs[1], new Vector3(-2.5f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+
+                SetUpItem setUpItem = obj.GetComponent<SetUpItem>();
+
+                setUpItem.ItemSetUp(SelectItemType(randomItemValue));
             }
         }
         playTime = 0;
@@ -158,18 +146,12 @@ public class DuoStageCreate : MonoBehaviour
             Instantiate(ObjPrefabs[0], new Vector3(0.9f, 0.6f, player.transform.position.z + 80f), Quaternion.identity);
             if (randomValue < 20)
             {
-                if (randomItemValue < hpItemPer)
-                {
-                    Instantiate(ObjPrefabs[1], new Vector3(2.5f, 0.6f, player.transform.position.z + 80f), Quaternion.identity);
-                }
-                else if (hpItemPer <= randomItemValue && randomItemValue < hpItemPer + scoreItemPer)
-                {
-                    Instantiate(ObjPrefabs[3], new Vector3(2.5f, 0.6f, player.transform.position.z + 80f), Quaternion.identity);
-                }
-                else if (hpItemPer + scoreItemPer <= randomItemValue && randomItemValue <= hpItemPer + scoreItemPer + jumpItemPer)
-                {
-                    Instantiate(ObjPrefabs[2], new Vector3(2.5f, 0.6f, player.transform.position.z + 80f), Quaternion.identity);
-                }
+
+                GameObject obj = Instantiate(ObjPrefabs[1], new Vector3(2.5f, 0.6f, player.transform.position.z + 80f), Quaternion.identity);
+
+                SetUpItem setUpItem = obj.GetComponent<SetUpItem>();
+
+                setUpItem.ItemSetUp(SelectItemType(randomItemValue));
             }
         }
         else if(50 <= randomValue)
@@ -177,18 +159,12 @@ public class DuoStageCreate : MonoBehaviour
             Instantiate(ObjPrefabs[0], new Vector3(2.5f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
             if (80 <= randomValue)
             {
-                if (randomItemValue < hpItemPer)
-                {
-                    Instantiate(ObjPrefabs[1], new Vector3(0.9f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
-                }
-                else if (hpItemPer <= randomItemValue && randomItemValue < hpItemPer + scoreItemPer)
-                {
-                    Instantiate(ObjPrefabs[3], new Vector3(0.9f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
-                }
-                else if (hpItemPer + scoreItemPer <= randomItemValue && randomItemValue <= hpItemPer + scoreItemPer + jumpItemPer)
-                {
-                    Instantiate(ObjPrefabs[2], new Vector3(0.9f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
-                }
+                
+                GameObject obj  = Instantiate(ObjPrefabs[1], new Vector3(0.9f, 0.5f, player.transform.position.z + 80f), Quaternion.identity);
+
+                SetUpItem setUpItem = obj.GetComponent<SetUpItem>();
+
+                setUpItem.ItemSetUp(SelectItemType(randomItemValue));
             }
         }
         playTime = 0;
@@ -218,6 +194,30 @@ public class DuoStageCreate : MonoBehaviour
         }
 
         return objSpan;
+    }
+
+    ItemDataSO.ItemType SelectItemType(int randomItemValue)
+    {
+
+        if (randomItemValue < hpItemPer)
+        {
+
+            return ItemDataSO.ItemType.HP;
+
+        }
+        else if (hpItemPer <= randomItemValue && randomItemValue < hpItemPer + scoreItemPer)
+        {
+
+            return ItemDataSO.ItemType.Score;
+
+        }
+        else if (hpItemPer + scoreItemPer <= randomItemValue && randomItemValue <= hpItemPer + scoreItemPer + fullHPItemPer)
+        {
+
+            return ItemDataSO.ItemType.fullHP;
+        }
+
+        return ItemDataSO.ItemType.None;
     }
 }
 
