@@ -59,36 +59,14 @@ public class DuoStageCreate : MonoBehaviour
         }
 
         playTime += Time.deltaTime;
-        gameLevel = gameMaster.gameLevel;
 
         if (transform.position.z > border)
         {
             CreateMap();
-        }
-
-        if (gameLevel <= 2)
-        {
-            objSpan = 0.8f;
-        }
-        else if (2 < gameLevel && gameLevel <= 4)
-        {
-            objSpan = 0.6f;
-        }
-        else if (4 < gameLevel && gameLevel <= 6)
-        {
-            objSpan = 0.5f;
-        }
-        else if (6 < gameLevel && gameLevel <= 8)
-        {
-            objSpan = 0.4f;
-        }
-        else if (gameLevel > 8)
-        {
-            objSpan = 0.3f;
-        }
+        }       
 
 
-        if (playTime > objSpan)
+        if (playTime > CreateObjSpan(gameMaster.gameLevel))
         {
             CreateLeftObj();
             CreateRightObj();
@@ -214,6 +192,32 @@ public class DuoStageCreate : MonoBehaviour
             }
         }
         playTime = 0;
+    }
+
+    private float CreateObjSpan(int gameLevel)
+    {
+        if (gameLevel <= 2)
+        {
+            objSpan = 0.8f;
+        }
+        else if (2 < gameLevel && gameLevel <= 4)
+        {
+            objSpan = 0.6f;
+        }
+        else if (4 < gameLevel && gameLevel <= 6)
+        {
+            objSpan = 0.5f;
+        }
+        else if (6 < gameLevel && gameLevel <= 8)
+        {
+            objSpan = 0.4f;
+        }
+        else if (gameLevel > 8)
+        {
+            objSpan = 0.3f;
+        }
+
+        return objSpan;
     }
 }
 

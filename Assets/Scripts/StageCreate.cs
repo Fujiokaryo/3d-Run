@@ -23,21 +23,14 @@ public class StageCreate : MonoBehaviour
     private int itemPer;
 
     [SerializeField]
-    private int hpItemPer;
-
-    [SerializeField]
-    private int scoreItemPer;
-
-    [SerializeField]
-    private int jumpItemPer;
-
-    [SerializeField]
     private GameMaster gameMaster;
 
     [SerializeField]
     private List<GameObject> laneObjs =  new List<GameObject>();
 
-    
+    [SerializeField]
+    public ItemDataSO itemDataSO;
+
     private int border = 1000;
     private int laneNum;
     private float playTime;
@@ -105,9 +98,6 @@ public class StageCreate : MonoBehaviour
             CreateMap();
         }
 
-        
-
-
         if (playTime > objSpan)
         {   
             
@@ -147,7 +137,8 @@ public class StageCreate : MonoBehaviour
     {
         for (int i = 0; i < maxLane; i++)
         {
-            CreateObj(i);
+           CreateObj(i);
+
         }
 
         playTime = 0;
@@ -169,24 +160,20 @@ public class StageCreate : MonoBehaviour
         }
         else if(wallPer <= randomValue && randomValue < wallPer + itemPer)
         {
-            if(randomItemValue < hpItemPer)
-            {
-                prefab = ObjPrefabs[1];
-            }
-            else if(hpItemPer <= randomItemValue && randomItemValue <hpItemPer + scoreItemPer)
-            {
-                prefab = ObjPrefabs[3];
-            }
-            else if(hpItemPer + scoreItemPer <= randomItemValue &&  randomItemValue <= hpItemPer + scoreItemPer + jumpItemPer)
-            {
-                prefab = ObjPrefabs[2];
-            }
+            prefab = ObjPrefabs[1];
         }
 
         if(prefab != null)
         {
             obj = Instantiate(prefab, new Vector3(initialWidth + (laneNum * laneWidth), 0.6f, player.transform.position.z + 80f), Quaternion.identity);
+            
         }
+        Debug.Log("オブジェクト生成");
+
+        SetUpItem setUpItem = obj.GetComponent<SetUpItem>();
+        Debug.Log("コンポーネント取得");
+
+        setUpItem.ItemTypeSetUp(randomItemValue);
 
         if(obj != null)
         {
@@ -219,19 +206,26 @@ public class StageCreate : MonoBehaviour
             laneObjs.Remove(laneObjs[value]);
 
            int randomItemValue = Random.Range(0, 100);
-            GameObject obj = null;
-            if (randomItemValue < hpItemPer)
-            {
-                obj = Instantiate(ObjPrefabs[1], new Vector3(-2.3f + laneWidth * value, 0.6f, player.transform.position.z + 80f), Quaternion.identity);
-            }
-            else if (hpItemPer <= randomItemValue && randomItemValue < hpItemPer + scoreItemPer)
-            {
-                obj = Instantiate(ObjPrefabs[3], new Vector3(-2.3f + laneWidth * value, 0.6f, player.transform.position.z + 80f), Quaternion.identity);
-            }
-            else if (hpItemPer + scoreItemPer <= randomItemValue && randomItemValue <= hpItemPer + scoreItemPer + jumpItemPer)
-            {
-                obj = Instantiate(ObjPrefabs[2], new Vector3(-2.3f + laneWidth * value, 0.6f, player.transform.position.z + 80f), Quaternion.identity);
-            }
+           GameObject obj = null;
+
+            obj = Instantiate(ObjPrefabs[1], new Vector3(-2.3f + laneWidth * value, 0.6f, player.transform.position.z + 80f), Quaternion.identity);
+
+            SetUpItem setUpItem = obj.GetComponent<SetUpItem>();
+
+            setUpItem.ItemTypeSetUp(randomItemValue);
+
+            //if (randomItemValue < hpItemPer)
+            //{
+            //    obj = Instantiate(ObjPrefabs[1], new Vector3(-2.3f + laneWidth * value, 0.6f, player.transform.position.z + 80f), Quaternion.identity);
+            //}
+            // else if (hpItemPer <= randomItemValue && randomItemValue < hpItemPer + scoreItemPer)
+            //{
+            //    obj = Instantiate(ObjPrefabs[3], new Vector3(-2.3f + laneWidth * value, 0.6f, player.transform.position.z + 80f), Quaternion.identity);
+            //}
+            //else if (hpItemPer + scoreItemPer <= randomItemValue && randomItemValue <= hpItemPer + scoreItemPer + jumpItemPer)
+            //{
+            //    obj = Instantiate(ObjPrefabs[2], new Vector3(-2.3f + laneWidth * value, 0.6f, player.transform.position.z + 80f), Quaternion.identity);
+            //}
 
             laneObjs.Insert(value, obj);
         }

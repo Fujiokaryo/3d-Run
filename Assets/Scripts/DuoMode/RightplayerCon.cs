@@ -98,6 +98,17 @@ public class RightplayerCon : MonoBehaviour
             return;
         }
 
+        CollisionItemCheck(other);
+
+    }
+
+    private void Accel()
+    {
+        rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, speed);
+    }
+
+    public void CollisionItemCheck(Collider other)
+    {
         if (other.gameObject.tag == "Wall")
         {
             gameLevel = gameMaster.gameLevel;
@@ -131,16 +142,10 @@ public class RightplayerCon : MonoBehaviour
             HPimg.DOFillAmount(PlayerHP, 0.3f);
         }
 
-        if(other.gameObject.tag == "fullHPItem")
+        if (other.gameObject.tag == "fullHPItem")
         {
             PlayerHP = 1;
             HPimg.DOFillAmount(PlayerHP, 0.3f);
         }
-
-    }
-
-    private void Accel()
-    {
-        rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, speed);
     }
 }

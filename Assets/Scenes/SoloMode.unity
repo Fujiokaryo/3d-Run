@@ -386,7 +386,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &295662973
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3001,16 +3001,14 @@ MonoBehaviour:
   Stage2: {fileID: 2065197571}
   ObjPrefabs:
   - {fileID: 9047151753645292429, guid: 84cf481b5d6284348aef68e8437c9146, type: 3}
-  - {fileID: 8143971759249058556, guid: 0f7a40a007606d748a1746a35fe056e9, type: 3}
-  - {fileID: 3351102702048643854, guid: 8ddd24b5b861a5541b353fc1d3a5c58f, type: 3}
-  - {fileID: 4326433148465206195, guid: 5ea72175883742d4eba5be7dbd1df801, type: 3}
+  - {fileID: 5071972745358081914, guid: 32dc5336d9b92cb46a2ea2269a42c3ef, type: 3}
   wallPer: 50
   itemPer: 30
-  hpItemPer: 30
-  scoreItemPer: 60
-  jumpItemPer: 10
+  setUpItem: {fileID: 3969806147395444720, guid: 32dc5336d9b92cb46a2ea2269a42c3ef,
+    type: 3}
   gameMaster: {fileID: 1467841761}
   laneObjs: []
+  itemDataSO: {fileID: 11400000, guid: 77d28021beda3b241bde0653eed1d47f, type: 2}
 --- !u!114 &1467841764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3352,7 +3350,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1612878364
 RectTransform:
   m_ObjectHideFlags: 0

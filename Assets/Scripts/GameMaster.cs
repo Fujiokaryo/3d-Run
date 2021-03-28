@@ -215,5 +215,4 @@ public class GameMaster : MonoBehaviour
             resultPlayTimeText.text = keepPlayTime.ToString("F2") + "s";
         }
     }
-
 }

@@ -47,41 +47,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isStart == false)
-        {
-            countDown -= Time.deltaTime;
-            countDownText.text = countDown.ToString("F2");
-            if(countDown < 0)
-            {
-                isStart = true;
-                animator.SetBool("run", true);
-                gameMaster.GameStart();
-                countDown = 0;      
-            }
 
-        }
+        CountDownStart();
 
-        if(GameOver == true || isStart == false)
-        {
-            if(GameOver == true)
-            {
-                gameOverTime += Time.deltaTime;
-                PlayerHP = 0;
-                
-                if(gameOverTime > 2f)
-                {
-                    animator.SetBool("reflesh", true);
-                    if (!clearFlag)
-                    {
-                        gameMaster.ScoreCheck();
-                        gameMaster.DisplayScore();
-                        clearFlag = true;
-                    }
-
-                }
-            }
-            return;
-        }
+        PlayerGameOver();
 
         Accel();
 
@@ -112,44 +81,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if(other.gameObject.tag == "Wall")
-        {
-            gameLevel = gameMaster.gameLevel;
-
-            if (gameLevel <= 3)
-            {
-                PlayerHP -= 0.25f;
-                HPimg.DOFillAmount(PlayerHP, 0.2f);
-            }
-            else if(gameLevel >= 4)
-            {
-                PlayerHP -= 0.4f;
-                HPimg.DOFillAmount(PlayerHP, 0.2f);
-            }
-
-            if (PlayerHP <= 0)
-            {
-                GameOver = true;
-            }
-
-        }
-
-        if(other.gameObject.tag == "HPItem")
-        {
-            PlayerHP += 0.25f;
-            if(PlayerHP > 1)
-            {
-                PlayerHP = 1;
-            }
-
-            HPimg.DOFillAmount(PlayerHP, 0.3f);
-        }
-
-        if(other.gameObject.tag == "JumpItem")
-        {
-            JumppingFlag = true;
-            JumpIcon.enabled = true;
-        }
+        CollisionObjCheck(other);
     }
 
     /// <summary>
@@ -213,4 +145,86 @@ public class PlayerController : MonoBehaviour
         JumpIcon.enabled = false;
     }
 
+    void CountDownStart()
+    {
+        if (isStart == false)
+        {
+            countDown -= Time.deltaTime;
+            countDownText.text = countDown.ToString("F2");
+            if (countDown < 0)
+            {
+                isStart = true;
+                animator.SetBool("run", true);
+                gameMaster.GameStart();
+                countDown = 0;
+            }
+
+        }
+    }
+
+    void PlayerGameOver()
+    {
+        if (GameOver == true || isStart == false)
+        {
+            if (GameOver == true)
+            {
+                gameOverTime += Time.deltaTime;
+                PlayerHP = 0;
+
+                if (gameOverTime > 2f)
+                {
+                    animator.SetBool("reflesh", true);
+                    if (!clearFlag)
+                    {
+                        gameMaster.ScoreCheck();
+                        gameMaster.DisplayScore();
+                        clearFlag = true;
+                    }
+
+                }
+            }
+            return;
+        }
+    }
+
+    void CollisionObjCheck(Collider other)
+    {
+        if (other.gameObject.tag == "Wall")
+        {
+
+            if (gameMaster.gameLevel <= 3)
+            {
+                PlayerHP -= 0.25f;
+                HPimg.DOFillAmount(PlayerHP, 0.2f);
+            }
+            else if (gameMaster.gameLevel >= 4)
+            {
+                PlayerHP -= 0.4f;
+                HPimg.DOFillAmount(PlayerHP, 0.2f);
+            }
+
+            if (PlayerHP <= 0)
+            {
+                GameOver = true;
+            }
+
+        }
+
+        if (other.gameObject.tag == "HPItem")
+        {
+            PlayerHP += 0.25f;
+            if (PlayerHP > 1)
+            {
+                PlayerHP = 1;
+            }
+
+            HPimg.DOFillAmount(PlayerHP, 0.3f);
+        }
+
+        if (other.gameObject.tag == "JumpItem")
+        {
+            JumppingFlag = true;
+            JumpIcon.enabled = true;
+        }
+    }
 }
