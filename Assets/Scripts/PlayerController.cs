@@ -212,7 +212,7 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.tag == "HPItem")
         {
-            PlayerHP += 0.25f;
+            PlayerHP += other.GetComponent<SetUpItem>().itemData.value;
             if (PlayerHP > 1)
             {
                 PlayerHP = 1;

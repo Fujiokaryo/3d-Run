@@ -13,32 +13,33 @@ public class SetUpItem : MonoBehaviour
     [SerializeField]
     private int jumpItemPer;
 
-    public ItemDataSO.ItemType itemType;
-    public void ItemSetUp(ItemDataSO.ItemType itemType)
+    public ItemDataSO.ItemData itemData;
+    public void ItemSetUp(ItemDataSO.ItemData itemData)
     {
-     
 
-        if(itemType == ItemDataSO.ItemType.HP)
+        this.itemData = itemData;
+
+        if(itemData.itemType == ItemDataSO.ItemType.HP)
         {
 
             gameObject.tag = "HPItem";
             gameObject.GetComponent<Renderer>().material.color = Color.magenta;
 
         }
-        else if(itemType == ItemDataSO.ItemType.Score)
+        else if(itemData.itemType == ItemDataSO.ItemType.Score)
         {
             
             gameObject.tag = "ScoreItem";
             gameObject.GetComponent<Renderer>().material.color = Color.yellow;
 
         }
-        else if(itemType == ItemDataSO.ItemType.Jump)
+        else if(itemData.itemType == ItemDataSO.ItemType.Jump)
         {
             
             gameObject.tag = "JumpItem";
             gameObject.GetComponent<Renderer>().material.color = Color.green;
         }
-        else if(itemType == ItemDataSO.ItemType.fullHP)
+        else if(itemData.itemType == ItemDataSO.ItemType.fullHP)
         {
 
             gameObject.tag = "fullHPItem";

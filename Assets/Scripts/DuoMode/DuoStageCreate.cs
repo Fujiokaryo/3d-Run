@@ -37,6 +37,9 @@ public class DuoStageCreate : MonoBehaviour
     [SerializeField]
     private RightplayerCon rightplayerCon;
 
+    [SerializeField]
+    private ItemDataSO itemDataSO;
+
     private int gameLevel;
     private int border = 1000;
     private float playTime;
@@ -196,28 +199,28 @@ public class DuoStageCreate : MonoBehaviour
         return objSpan;
     }
 
-    ItemDataSO.ItemType SelectItemType(int randomItemValue)
+    ItemDataSO.ItemData SelectItemType(int randomItemValue)
     {
 
         if (randomItemValue < hpItemPer)
         {
 
-            return ItemDataSO.ItemType.HP;
+            return itemDataSO.itemDataList[1];
 
         }
         else if (hpItemPer <= randomItemValue && randomItemValue < hpItemPer + scoreItemPer)
         {
 
-            return ItemDataSO.ItemType.Score;
+            return itemDataSO.itemDataList[3];
 
         }
         else if (hpItemPer + scoreItemPer <= randomItemValue && randomItemValue <= hpItemPer + scoreItemPer + fullHPItemPer)
         {
 
-            return ItemDataSO.ItemType.fullHP;
+            return itemDataSO.itemDataList[2];
         }
 
-        return ItemDataSO.ItemType.None;
+        return itemDataSO.itemDataList[0];
     }
 }
 

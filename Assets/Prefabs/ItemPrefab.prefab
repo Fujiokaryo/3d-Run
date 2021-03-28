@@ -110,6 +110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healEffect: {fileID: 100004, guid: d2b3bb95ad1a24e7c9893dec33b57b50, type: 3}
   objSe: {fileID: 8300000, guid: 6085cf5f6f60ba542bf7e55a06326708, type: 3}
+  setUp: {fileID: 3969806147395444720}
 --- !u!114 &3969806147395444720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,4 +126,6 @@ MonoBehaviour:
   hpItemPer: 30
   scoreItemPer: 60
   jumpItemPer: 10
-  itemType: 0
+  itemData:
+    itemType: 0
+    value: 0

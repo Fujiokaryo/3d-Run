@@ -108,3 +108,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healEffect: {fileID: 100004, guid: d2b3bb95ad1a24e7c9893dec33b57b50, type: 3}
   objSe: {fileID: 8300000, guid: 46a73cb4e0e01034699bbe885f7097e8, type: 3}
+  setUp: {fileID: 3969806147395444720, guid: 32dc5336d9b92cb46a2ea2269a42c3ef, type: 3}

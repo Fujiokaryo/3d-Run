@@ -3398,6 +3398,7 @@ MonoBehaviour:
   fullHPItemPer: 3
   gameMaster: {fileID: 1353279287}
   rightplayerCon: {fileID: 1910956605}
+  itemDataSO: {fileID: 11400000, guid: 77d28021beda3b241bde0653eed1d47f, type: 2}
 --- !u!54 &1353279289
 Rigidbody:
   m_ObjectHideFlags: 0

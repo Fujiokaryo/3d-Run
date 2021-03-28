@@ -37,6 +37,9 @@ public class StageCreate : MonoBehaviour
     [SerializeField]
     private List<GameObject> laneObjs =  new List<GameObject>();
 
+    [SerializeField]
+    private ItemDataSO itemDataSO;
+
 
     private int border = 1000;
     private int laneNum;
@@ -244,27 +247,27 @@ public class StageCreate : MonoBehaviour
 
     }
 
-    ItemDataSO.ItemType SelectItemType(int randomItemValue)
+    ItemDataSO.ItemData SelectItemType(int randomItemValue)
     {
 
         if (randomItemValue < hpItemPer)
         {
 
-            return ItemDataSO.ItemType.HP;
+            return itemDataSO.itemDataList[1];
 
         }
         else if (hpItemPer <= randomItemValue && randomItemValue < hpItemPer + scoreItemPer)
         {
 
-            return ItemDataSO.ItemType.Score;
+            return itemDataSO.itemDataList[3];
 
         }
         else if (hpItemPer + scoreItemPer <= randomItemValue && randomItemValue <= hpItemPer + scoreItemPer + jumpItemPer)
         {
 
-            return ItemDataSO.ItemType.Jump;
+            return itemDataSO.itemDataList[4];
         }
 
-        return ItemDataSO.ItemType.None;
+        return itemDataSO.itemDataList[0];
     }
 }

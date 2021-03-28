@@ -3011,6 +3011,7 @@ MonoBehaviour:
   jumpItemPer: 10
   gameMaster: {fileID: 1467841761}
   laneObjs: []
+  itemDataSO: {fileID: 11400000, guid: 77d28021beda3b241bde0653eed1d47f, type: 2}
 --- !u!114 &1467841764
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,6 +13,8 @@ public class ItemDataSO : ScriptableObject
     {            
         public ItemType itemType;
 
+        public float value;
+
     }
 
     public enum ItemType

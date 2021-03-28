@@ -133,7 +133,7 @@ public class RightplayerCon : MonoBehaviour
 
         if (other.gameObject.tag == "HPItem")
         {
-            PlayerHP += 0.25f;
+            PlayerHP += other.GetComponent<SetUpItem>().itemData.value;
             if (PlayerHP > 1)
             {
                 PlayerHP = 1;
@@ -144,7 +144,7 @@ public class RightplayerCon : MonoBehaviour
 
         if (other.gameObject.tag == "fullHPItem")
         {
-            PlayerHP = 1;
+            PlayerHP = other.GetComponent<SetUpItem>().itemData.value;
             HPimg.DOFillAmount(PlayerHP, 0.3f);
         }
     }

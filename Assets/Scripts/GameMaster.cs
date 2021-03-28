@@ -59,7 +59,6 @@ public class GameMaster : MonoBehaviour
     private int levelUp = 30;
     private int score;
     private int timeScore;
-    private int itemPoint; 
     private float keepPlayTime = -3;
     private float keepPlayTimeSep = 3;
     private PlayerController playerController;
@@ -137,20 +136,8 @@ public class GameMaster : MonoBehaviour
     /// <summary>
     /// アイテムによるポイント加算
     /// </summary>
-    public void AddPoint()
+    public void AddPoint(int itemPoint)
     {
-        if (gameLevel <= 5)
-        {
-            itemPoint = 500;
-        }
-        else if (5 < gameLevel && gameLevel <= 10)
-        {
-            itemPoint = 700;
-        }
-        else if (10 < gameLevel)
-        {
-            itemPoint = 1000;
-        }
 
         score += itemPoint;
         scoreText.text = score.ToString();

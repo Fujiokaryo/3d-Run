@@ -10,16 +10,19 @@ public class ObjDestroy : MonoBehaviour
     [SerializeField]
     private AudioClip objSe;
 
+    [SerializeField]
+    private SetUpItem setUp;
+
     private GameObject player;
 
-    private GameObject gameMaster;
+    private GameMaster gameMaster;
 
     private PlayerController playerController;
     private RightplayerCon rightplayerCon;
-
+    
     private void Start()
     {
-        gameMaster = GameObject.Find("GameMaster");
+        gameMaster = GameObject.Find("GameMaster").GetComponent<GameMaster>();
         player = GameObject.Find("unitychan");
         playerController = player.GetComponent<PlayerController>();
         rightplayerCon = GameObject.Find("unitychan").GetComponent<RightplayerCon>();
@@ -51,7 +54,7 @@ public class ObjDestroy : MonoBehaviour
 
         if(gameObject.tag == "ScoreItem")
         {
-            gameMaster.GetComponent<GameMaster>().AddPoint();
+            gameMaster.GetComponent<GameMaster>().AddPoint(CheckItemPoint(gameMaster.gameLevel));
             AudioSource.PlayClipAtPoint(objSe, transform.position);
             Destroy(gameObject);
         }
@@ -84,5 +87,21 @@ public class ObjDestroy : MonoBehaviour
         {
             AudioSource.PlayClipAtPoint(objSe, transform.position);
         }
+    }
+
+    private int CheckItemPoint(int gameLevel)
+    {
+        int itemPoint = (int)setUp.itemData.value;
+
+        if (5 < gameLevel && gameLevel <= 10)
+        {
+            itemPoint = 500;
+        }
+        else if (10 < gameLevel)
+        {
+            itemPoint = 800;
+        }
+
+        return itemPoint;
     }
 }
