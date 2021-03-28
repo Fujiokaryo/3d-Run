@@ -137,8 +137,8 @@ public class StageCreate : MonoBehaviour
     {
         for (int i = 0; i < maxLane; i++)
         {
-           CreateObj(i);
-
+          CreateObj(i);
+           
         }
 
         playTime = 0;
@@ -154,6 +154,7 @@ public class StageCreate : MonoBehaviour
         GameObject prefab = null;
         GameObject obj = null;
 
+
         if(randomValue < wallPer)
         {
             prefab = ObjPrefabs[0];
@@ -166,14 +167,16 @@ public class StageCreate : MonoBehaviour
         if(prefab != null)
         {
             obj = Instantiate(prefab, new Vector3(initialWidth + (laneNum * laneWidth), 0.6f, player.transform.position.z + 80f), Quaternion.identity);
-            
+
+            Debug.Log("オブジェクト生成");
+
+            SetUpItem setUpItem = obj.GetComponent<SetUpItem>();
+            Debug.Log("コンポーネント取得");
+
+
+            setUpItem.ItemTypeSetUp(randomItemValue);
         }
-        Debug.Log("オブジェクト生成");
-
-        SetUpItem setUpItem = obj.GetComponent<SetUpItem>();
-        Debug.Log("コンポーネント取得");
-
-        setUpItem.ItemTypeSetUp(randomItemValue);
+       
 
         if(obj != null)
         {
